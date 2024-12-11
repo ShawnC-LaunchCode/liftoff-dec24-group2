@@ -17,14 +17,14 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/registration")
-    public String getRegistrationPage(){
+    public String getRegistrationPage(@ModelAttribute("user") UserDto userDto){
         return "register";
     }
 
     @PostMapping("/registration")
     public String saveUser(@ModelAttribute("user") UserDto userDto, Model model) {
         userService.save(userDto);
-        model.addAttribute("message", "Registered sucessfully");
+        model.addAttribute("message", "Registered successfully");
 
     return "register";
     }

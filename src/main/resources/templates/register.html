@@ -1,25 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/styles.css}">
   <title>Registration Form</title>
 </head>
 <body>
-<div>
-  <h2>Register</h2>
-  <form action="/registration" method="POST">
-    <label for="full-name">Full Name</label>
-    <input type="text" id="full-name" name="full-name" required>
+<div class="container">
+  <div class="message" th:if="${message !=null }">
+    <p th:text="${message}"></p>
+  </div>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
+  <h2>Registration form</h2>
+  <form th:action=" @{/registration}" method="POST" role="form" th:object="${user}">
 
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
+    <div class="form-group">
+
+      <label for="fullname">Full name:</label>
+      <input th:field="*{fullname}" type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+    </div>
+
+    <div class="form-group">
+
+      <label for="email">Email:</label>
+      <input th:field="*{email}" type="email" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+
+<!--    <div class="form-group">-->
+
+<!--    <label for="username">Username:</label>-->
+<!--    <input th:field="*{username}" type="text" id="username" name="username" placeholder="Enter your username">-->
+<!--    </div>-->
+
+
+    <div class="form-group">
+    <label for="password">Password: </label>
+    <input th:field="*{password}" type="password" id="password" name="password" placeholder="Enter your password" required>
+    </div>
 
     <input type="submit" value="Register">
+
   </form>
+
 </div>
 </body>
 </html>
