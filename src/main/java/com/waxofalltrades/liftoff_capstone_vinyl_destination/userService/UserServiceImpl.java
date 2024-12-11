@@ -3,7 +3,9 @@ package com.waxofalltrades.liftoff_capstone_vinyl_destination.userService;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.dto.UserDto;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.User;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.UserRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService{
 
     private UserRepository userRepository;
