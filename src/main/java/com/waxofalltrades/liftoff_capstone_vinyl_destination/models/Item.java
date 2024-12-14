@@ -3,25 +3,23 @@ package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import org.antlr.v4.runtime.misc.NotNull;
 
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @NotNull
-    private int ItemId;
+    private int itemId;
 
     private double price;
 
-    private int QtyInStock;
+    private int qtyInStock;
 
     public Item(int id, int itemId, double price, int qtyInStock) {
         this.id = id;
-        ItemId = itemId;
+        this.itemId = itemId;
         this.price = price;
-        QtyInStock = qtyInStock;
+        this.qtyInStock = qtyInStock;
     }
 
     public Item() {
@@ -36,11 +34,11 @@ public class Item {
     }
 
     public int getItemId() {
-        return ItemId;
+        return itemId;
     }
 
     public void setItemId(int itemId) {
-        ItemId = itemId;
+        this.itemId = itemId;
     }
 
     public double getPrice() {
@@ -52,11 +50,11 @@ public class Item {
     }
 
     public int getQtyInStock() {
-        return QtyInStock;
+        return qtyInStock;
     }
 
     public void setQtyInStock(int qtyInStock) {
-        QtyInStock = qtyInStock;
+        this.qtyInStock = qtyInStock;
     }
 
 
