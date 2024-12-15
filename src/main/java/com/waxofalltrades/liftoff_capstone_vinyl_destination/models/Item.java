@@ -3,6 +3,10 @@ package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Item {
     @Id
@@ -14,6 +18,9 @@ public class Item {
     private double price;
 
     private int qtyInStock;
+
+    @ManyToMany
+    private final List<Condition> conditions = new ArrayList<>();
 
     public Item(int id, int itemId, double price, int qtyInStock) {
         this.id = id;
