@@ -20,6 +20,9 @@ public class Item {
     @ManyToMany
     private final List<Shape> shapes = new ArrayList<>();
 
+    @ManyToMany
+    private final List<StorageType> storageTypes = new ArrayList<>();
+
     public Item(int id, int itemId, double price, int qtyInStock) {
         this.id = id;
         this.itemId = itemId;
