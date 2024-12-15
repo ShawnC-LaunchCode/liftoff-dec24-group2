@@ -6,22 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Condition {
+public class Shape {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String name;
 
-    @ManyToMany(mappedBy = "conditions")
+    @ManyToMany(mappedBy = "shapes")
     private final List<Item> items = new ArrayList<>();
 
-    public Condition(int id, String name) {
+    public Shape(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Condition() {
+    public Shape() {
     }
 
     public int getId() {

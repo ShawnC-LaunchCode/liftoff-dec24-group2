@@ -18,7 +18,7 @@ public class Item {
     private int qtyInStock;
 
     @ManyToMany
-    private final List<Condition> conditions = new ArrayList<>();
+    private final List<Shape> shapes = new ArrayList<>();
 
     public Item(int id, int itemId, double price, int qtyInStock) {
         this.id = id;
