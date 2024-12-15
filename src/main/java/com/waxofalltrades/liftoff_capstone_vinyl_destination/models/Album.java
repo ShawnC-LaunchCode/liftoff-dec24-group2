@@ -1,16 +1,13 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Entity
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
