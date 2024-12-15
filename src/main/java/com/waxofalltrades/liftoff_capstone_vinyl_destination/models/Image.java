@@ -1,9 +1,6 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -14,6 +11,9 @@ public class Image {
 
     @Size(max = 120, message = "Image URL must be less than 120 characters")
     private String link;
+
+    @OneToOne(mappedBy = "albumImage")
+    private Album album;
 
     public Image(int id, String link) {
         this.id = id;
