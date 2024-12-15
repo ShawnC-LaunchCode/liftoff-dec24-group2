@@ -1,6 +1,7 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ public class FormatType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Size(max = 45, message = "Format name must be less than 120 characters")
     private String name;
 
     @ManyToMany(mappedBy = "formatTypes")
