@@ -1,13 +1,11 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class StorageType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
