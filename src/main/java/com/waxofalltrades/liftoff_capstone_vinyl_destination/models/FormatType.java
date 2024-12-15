@@ -6,22 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class StorageType {
+public class FormatType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String name;
 
-    @ManyToMany(mappedBy = "storageTypes")
+    @ManyToMany(mappedBy = "formatTypes")
     private final List<Item> items = new ArrayList<>();
 
-    public StorageType(int id, String name) {
+    public FormatType(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public StorageType() {
+    public FormatType() {
     }
 
     public int getId() {

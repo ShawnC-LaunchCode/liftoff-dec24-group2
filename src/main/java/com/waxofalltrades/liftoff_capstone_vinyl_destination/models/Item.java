@@ -18,10 +18,10 @@ public class Item {
     private int qtyInStock;
 
     @ManyToMany
-    private final List<Shape> shapes = new ArrayList<>();
+    private final List<ConditionType> conditionTypes = new ArrayList<>();
 
     @ManyToMany
-    private final List<StorageType> storageTypes = new ArrayList<>();
+    private final List<FormatType> formatTypes = new ArrayList<>();
 
     public Item(int id, int itemId, double price, int qtyInStock) {
         this.id = id;
