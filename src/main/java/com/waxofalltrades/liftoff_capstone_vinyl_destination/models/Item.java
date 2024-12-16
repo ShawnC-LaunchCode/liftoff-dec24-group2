@@ -11,7 +11,8 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private int itemId;
+    @ManyToOne
+    private Album album;
 
     private double price;
 
@@ -23,9 +24,9 @@ public class Item {
     @ManyToMany
     private final List<FormatType> formatTypes = new ArrayList<>();
 
-    public Item(int id, int itemId, double price, int qtyInStock) {
+    public Item(int id, Album album, double price, int qtyInStock) {
         this.id = id;
-        this.itemId = itemId;
+        this.album = album;
         this.price = price;
         this.qtyInStock = qtyInStock;
     }
@@ -41,12 +42,12 @@ public class Item {
         this.id = id;
     }
 
-    public int getItemId() {
-        return itemId;
+    public Album getAlbum() {
+        return album;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 
     public double getPrice() {

@@ -19,8 +19,8 @@ public class Album {
 
     private Date releaseDate;
 
-    @OneToMany(mappedBy = "itemId")
-    private List<Item> items = new ArrayList<>();
+    @OneToMany(mappedBy = "album")
+    private final List<Item> items = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     private Image albumImage;
