@@ -1,0 +1,16 @@
+<!DocTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Payment Page</title>
+</head>
+<body>
+<h1>Welcome to Our Store</h1>
+<p>Price: $10</p>
+
+<!-- Payment button to create a checkout session -->
+<form action="/create-checkout-session" method="post">
+    <button type="submit">Proceed to Checkout</button>
+</form>
+</body>
+</html>
