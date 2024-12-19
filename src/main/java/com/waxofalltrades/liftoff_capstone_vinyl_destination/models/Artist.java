@@ -1,10 +1,10 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Artist {
@@ -14,6 +14,12 @@ public class Artist {
 
     @Size(max = 120, message = "Artist name must be less than 120 characters")
     private String name;
+
+    @OneToMany(mappedBy = "artist")
+    private final List<Album> albums = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Image image;
 
     public Artist(int id, String name) {
         this.id = id;

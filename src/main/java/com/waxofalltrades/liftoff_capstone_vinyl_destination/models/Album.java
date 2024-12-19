@@ -25,4 +25,50 @@ public class Album {
     @OneToOne(cascade = CascadeType.ALL)
     private Image albumImage;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Artist artist;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public @Size(max = 120, message = "Album name must be less than 120 characters") String getName() {
+        return name;
+    }
+
+    public void setName(@Size(max = 120, message = "Album name must be less than 120 characters") String name) {
+        this.name = name;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public Image getAlbumImage() {
+        return albumImage;
+    }
+
+    public void setAlbumImage(Image albumImage) {
+        this.albumImage = albumImage;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
 }
