@@ -22,7 +22,7 @@ public class CustomUserDetail implements UserDetails {
     }
 
     public String getFullname(){
-        return user.getFullname();
+        return user.getFirstName();
     }
 
 
