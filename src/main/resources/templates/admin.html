@@ -11,7 +11,7 @@
     <h1>Admin Dashboard</h1>
 </header>
 <main>
-    <p>Welcome, <span th:text="${user.fullname}">Admin Name</span>!</p>
+    <p>Welcome, <span th:text="${user.firstName}">Admin Name</span>!</p>
 
     <span sec:authorize="isAuthenticated">
     <a th:href="@{/logout}">

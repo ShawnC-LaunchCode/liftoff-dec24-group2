@@ -11,7 +11,7 @@
     <h1>User Dashboard</h1>
 </div>
 
-    <h2>Welcome, <span th:text="${user.fullname}">User Name</span>!</h2>
+    <h2>Welcome, <span th:text="${user.firstName}">User Name</span>!</h2>
 
 <span sec:authorize="isAuthenticated">
     <a th:href="@{/logout}">

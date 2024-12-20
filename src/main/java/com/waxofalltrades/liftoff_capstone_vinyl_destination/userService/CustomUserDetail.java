@@ -21,7 +21,7 @@ public class CustomUserDetail implements UserDetails {
         return List.of(()-> user.getRole());
     }
 
-    public String getFullname(){
+    public String getFirstName(){
         return user.getFirstName();
     }
 

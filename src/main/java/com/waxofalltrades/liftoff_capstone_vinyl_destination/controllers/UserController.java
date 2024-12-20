@@ -45,7 +45,7 @@ public class UserController {
     public String userPage(Model model, Principal principal){
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("user", userDetails);
-        return  "user";
+        return  "/";
     }
 
     @GetMapping("/admin-page")
@@ -53,6 +53,11 @@ public class UserController {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         model.addAttribute("user", userDetails);
         return  "admin";
+    }
+
+    @GetMapping("/")
+    public String homePage(){
+        return "index";
     }
 
 }
