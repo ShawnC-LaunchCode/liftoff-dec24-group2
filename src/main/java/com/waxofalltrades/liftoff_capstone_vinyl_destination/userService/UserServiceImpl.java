@@ -16,9 +16,16 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
 
+
+
     @Override
     public User save(UserDto userDto) {
-        User user = new User(userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()), userDto.getRole(), userDto.getFirstName(), userDto.getLastName());
+        String role = userDto.getRole();
+        if (role == null || role.isEmpty()) {
+            role = "USER";
+        }
+
+        User user = new User(userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()), role, userDto.getFirstName(), userDto.getLastName());
         return userRepository.save(user);
     }
 }
