@@ -1,5 +1,8 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.controllers;
 
+import com.waxofalltrades.liftoff_capstone_vinyl_destination.dto.Product;
+import com.waxofalltrades.liftoff_capstone_vinyl_destination.dto.StripeResponse;
+import com.waxofalltrades.liftoff_capstone_vinyl_destination.service.StripeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +22,7 @@ public class ProductCheckoutController {
     }
 
     @PostMapping("/checkout")
-    public ResponseEntity<StripeResponse> checkoutProducts(@RequestBody ProductRequest productRequest) {
+    public ResponseEntity<StripeResponse> checkoutProducts(@RequestBody Product productRequest) {
         StripeResponse stripeResponse = stripeService.checkoutProducts(productRequest);
         return ResponseEntity
                 .status(HttpStatus.OK)
