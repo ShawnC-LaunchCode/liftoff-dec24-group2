@@ -5,6 +5,37 @@
     <title>Title</title>
 </head>
 <body>
+<h1>Add New Item</h1>
+
+<form method="post">
+    <label th:for="album">Album
+        <select name="albumId">
+            <option th:each="album : ${albums}"
+                    th:text="${album.name}"
+                    th:value="${album.id}"></option>
+        </select>
+    </label>
+    <label>Condition
+        <select name="conditionTypeId">
+            <option th:each="conditionType : ${conditionTypes}"
+                    th:text="${conditionType.name}"
+                    th:value="${conditionType.id}"></option>
+        </select>
+    </label>
+    <label>Format
+        <select name="formatTypeId">
+            <option th:each="formatType : ${formatTypes}"
+                    th:text="${formatType.name}"
+                    th:value="${formatType.id}"></option>
+        </select>
+    </label>
+    <label>Price
+        <input th:field="${item.price}">
+    </label>
+
+
+    <input type="submit" value="Add Item"/>
+</form>
 
 </body>
 </html>
