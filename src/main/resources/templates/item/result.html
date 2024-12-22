@@ -20,9 +20,9 @@
         <th>Qty Available</th>
     </tr>
     <tr th:each="item : ${items}">
-        <td th:text="${item.album.name}"></td>
-        <td th:text = "${item.formatType.name}"></td>
-        <td th:text="${item.conditionType.name}"></td>
+        <td th:text="${item.itemId.album.name}"></td>
+        <td th:text = "${item.itemId.formatType.name}"></td>
+        <td th:text="${item.itemId.conditionType.name}"></td>
         <td th:text="${item.price}"></td>
         <td th:text="${item.qtyInStock}"></td>
     </tr>

@@ -9,7 +9,7 @@
 
 <form method="post">
     <label>Album
-        <select th:field="${item.album}">
+        <select th:field="${item.itemId.album.Id}">
             <option th:each="album : ${albums}"
                     th:value="${album.id}"
                     th:text="${album.name}"
@@ -17,14 +17,14 @@
         </select>
     </label>
     <label>Condition
-        <select th:field="${item.conditionType}">
+        <select th:field="${item.itemId.conditionType.Id}">
             <option th:each="conditionType : ${conditionTypes}"
                     th:text="${conditionType.name}"
                     th:value="${conditionType.id}"></option>
         </select>
     </label>
     <label>Format
-        <select th:field="${item.formatType}">
+        <select th:field="${item.itemId.formatType.Id}">
             <option th:each="formatType : ${formatTypes}"
                     th:text="${formatType.name}"
                     th:value="${formatType.id}"></option>

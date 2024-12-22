@@ -9,27 +9,27 @@ import java.util.List;
 @Entity
 public class Item {
     @EmbeddedId
-    private ItemId Id;
+    private ItemId itemId;
 
     private double price;
 
-    private int qtyInStock;
+    private int qtyInStock = 1;
 
     public Item() {
     }
 
-    public Item(ItemId id, double price, int qtyInStock) {
-        Id = id;
+    public Item(ItemId itemId, double price, int qtyInStock) {
+        this.itemId = itemId;
         this.price = price;
         this.qtyInStock = qtyInStock;
     }
 
-    public ItemId getId() {
-        return Id;
+    public ItemId getItemId() {
+        return itemId;
     }
 
-    public void setId(ItemId id) {
-        Id = id;
+    public void setItemId(ItemId itemId) {
+        this.itemId = itemId;
     }
 
     public double getPrice() {
