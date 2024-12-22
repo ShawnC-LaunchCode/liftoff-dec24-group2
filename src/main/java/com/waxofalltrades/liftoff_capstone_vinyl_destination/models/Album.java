@@ -19,9 +19,6 @@ public class Album {
 
     private Date releaseDate;
 
-    @OneToMany(mappedBy = "album")
-    private final List<Item> items = new ArrayList<>();
-
     @OneToOne(cascade = CascadeType.ALL)
     private Image albumImage;
 
@@ -55,10 +52,11 @@ public class Album {
         this.releaseDate = releaseDate;
     }
 
+    /*
     public List<Item> getItems() {
         return items;
     }
-
+    */
     public Image getAlbumImage() {
         return albumImage;
     }

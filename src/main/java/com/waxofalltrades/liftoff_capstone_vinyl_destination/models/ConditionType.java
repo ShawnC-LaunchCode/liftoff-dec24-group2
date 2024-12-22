@@ -13,9 +13,6 @@ public class ConditionType {
 
     private String name;
 
-    @OneToMany(mappedBy = "conditionType")
-    private final List<Item> items = new ArrayList<>();
-
     public ConditionType(int id, String name) {
         this.id = id;
         this.name = name;
