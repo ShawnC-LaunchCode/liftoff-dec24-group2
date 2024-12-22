@@ -59,11 +59,16 @@ public class ItemController {
 
         // If item with same albumId, conditionType, formatType exists in itemRepository:
             // Increment item.qtyInStock by 1
+        if(itemRepository.findByAlbum(newItem.getAlbum()) != null){
+            Item existingItem = itemRepository.findByAlbum(newItem.getAlbum());
+            existingItem.setQtyInStock(existingItem.getQtyInStock() + 1 );
+            itemRepository.save(existingItem);
+        }
+        else{
+            // save new item
+            itemRepository.save(newItem);
+        }
 
-        // else:
-            // Create new item
-
-        itemRepository.save(newItem);
         return "redirect:/item/";
     }
 
