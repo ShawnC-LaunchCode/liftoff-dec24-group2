@@ -15,7 +15,7 @@ public class FormatType {
     @Size(max = 45, message = "Format name must be less than 120 characters")
     private String name;
 
-    @ManyToMany(mappedBy = "formatTypes")
+    @OneToMany(mappedBy = "formatType")
     private final List<Item> items = new ArrayList<>();
 
     public FormatType(int id, String name) {
@@ -41,10 +41,5 @@ public class FormatType {
     public void setName(String name) {
         this.name = name;
     }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
 
 }

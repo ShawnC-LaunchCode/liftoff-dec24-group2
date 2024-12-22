@@ -18,11 +18,11 @@ public class Item {
 
     private int qtyInStock;
 
-    @ManyToMany
-    private final List<ConditionType> conditionTypes = new ArrayList<>();
+    @ManyToOne
+    private ConditionType conditionType;
 
-    @ManyToMany
-    private final List<FormatType> formatTypes = new ArrayList<>();
+    @ManyToOne
+    private FormatType formatType;
 
     public Item(int id, Album album, double price, int qtyInStock) {
         this.id = id;
@@ -66,5 +66,19 @@ public class Item {
         this.qtyInStock = qtyInStock;
     }
 
+    public ConditionType getConditionType() {
+        return conditionType;
+    }
 
+    public void setConditionType(ConditionType conditionType) {
+        this.conditionType = conditionType;
+    }
+
+    public FormatType getFormatType() {
+        return formatType;
+    }
+
+    public void setFormatType(FormatType formatType) {
+        this.formatType = formatType;
+    }
 }

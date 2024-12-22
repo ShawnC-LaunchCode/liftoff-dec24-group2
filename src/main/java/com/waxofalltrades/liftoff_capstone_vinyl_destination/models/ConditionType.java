@@ -13,7 +13,7 @@ public class ConditionType {
 
     private String name;
 
-    @ManyToMany(mappedBy = "conditionTypes")
+    @OneToMany(mappedBy = "conditionType")
     private final List<Item> items = new ArrayList<>();
 
     public ConditionType(int id, String name) {

@@ -8,22 +8,23 @@
 <h1>Add New Item</h1>
 
 <form method="post">
-    <label th:for="album">Album
-        <select name="albumId">
+    <label>Album
+        <select th:field="${item.album}">
             <option th:each="album : ${albums}"
+                    th:value="${album.id}"
                     th:text="${album.name}"
-                    th:value="${album.id}"></option>
+            ></option>
         </select>
     </label>
     <label>Condition
-        <select name="conditionTypeId">
+        <select th:field="${item.conditionType}">
             <option th:each="conditionType : ${conditionTypes}"
                     th:text="${conditionType.name}"
                     th:value="${conditionType.id}"></option>
         </select>
     </label>
     <label>Format
-        <select name="formatTypeId">
+        <select th:field="${item.formatType}">
             <option th:each="formatType : ${formatTypes}"
                     th:text="${formatType.name}"
                     th:value="${formatType.id}"></option>

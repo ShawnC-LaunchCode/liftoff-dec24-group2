@@ -1,10 +1,10 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Genre {
@@ -14,6 +14,9 @@ public class Genre {
 
     @Size(max = 120, message = "Genre name must be less than 120 characters")
     private String name;
+
+    @OneToMany(mappedBy = "genre")
+    private final List<Album> albums = new ArrayList<>();
 
     public Genre(int id, String name) {
         this.id = id;

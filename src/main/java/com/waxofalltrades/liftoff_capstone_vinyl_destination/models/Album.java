@@ -28,6 +28,9 @@ public class Album {
     @ManyToOne(cascade = CascadeType.ALL)
     private Artist artist;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Genre genre;
+
     public int getId() {
         return id;
     }
@@ -70,5 +73,13 @@ public class Album {
 
     public void setArtist(Artist artist) {
         this.artist = artist;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }

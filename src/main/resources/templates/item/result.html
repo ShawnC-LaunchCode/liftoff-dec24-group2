@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Inventory</th>
+    </tr>
+    </thead>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.album.name}"></td>
+    </tr>1
+</table>
+
+</body>
+</html>
