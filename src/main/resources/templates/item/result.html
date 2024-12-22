@@ -6,15 +6,26 @@
 </head>
 <body>
 
-<table class="table table-striped">
+<table>
     <thead>
     <tr>
         <th>Inventory</th>
     </tr>
     </thead>
+    <tr>
+        <th>Album Name</th>
+        <th>Format</th>
+        <th>Condition</th>
+        <th>Price</th>
+        <th>Qty Available</th>
+    </tr>
     <tr th:each="item : ${items}">
         <td th:text="${item.album.name}"></td>
-    </tr>1
+        <td th:text = "${item.formatType.name}"></td>
+        <td th:text="${item.conditionType.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.qtyInStock}"></td>
+    </tr>
 </table>
 
 </body>
