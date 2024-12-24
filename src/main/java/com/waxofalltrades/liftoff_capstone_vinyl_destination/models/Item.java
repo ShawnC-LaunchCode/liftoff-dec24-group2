@@ -1,35 +1,78 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
 import jakarta.persistence.*;
-
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Formula;
 
 @Entity
+@Table(name = "item", uniqueConstraints = { @UniqueConstraint(columnNames = {"album_id", "condition_type_id", "format_type_id"})})
 public class Item {
-    @EmbeddedId
-    private ItemId itemId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     private double price;
 
     private int qtyInStock = 1;
 
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    @NotNull
+    private Album album;
+
+    @ManyToOne
+    @JoinColumn(name = "condition_type_id")
+    @NotNull
+    private ConditionType conditionType;
+
+    @ManyToOne
+    @JoinColumn(name = "format_type_id")
+    @NotNull
+    private FormatType formatType;
+
     public Item() {
     }
 
-    public Item(ItemId itemId, double price, int qtyInStock) {
-        this.itemId = itemId;
+    public Item(int id, double price, int qtyInStock, Album album, ConditionType conditionType, FormatType formatType) {
+        this.id = id;
         this.price = price;
         this.qtyInStock = qtyInStock;
+        this.album = album;
+        this.conditionType = conditionType;
+        this.formatType = formatType;
+
     }
 
-    public ItemId getItemId() {
-        return itemId;
+    public int getId() {
+        return id;
     }
 
-    public void setItemId(ItemId itemId) {
-        this.itemId = itemId;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
+    public ConditionType getConditionType() {
+        return conditionType;
+    }
+
+    public void setConditionType(ConditionType conditionType) {
+        this.conditionType = conditionType;
+    }
+
+    public FormatType getFormatType() {
+        return formatType;
+    }
+
+    public void setFormatType(FormatType formatType) {
+        this.formatType = formatType;
     }
 
     public double getPrice() {
@@ -47,4 +90,5 @@ public class Item {
     public void setQtyInStock(int qtyInStock) {
         this.qtyInStock = qtyInStock;
     }
+
 }
