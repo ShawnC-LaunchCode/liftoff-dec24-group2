@@ -102,13 +102,18 @@ public class ItemController {
         }
 
     @PostMapping("edit")
-    public String processEditItemForm(@ModelAttribute @Valid Item existingItem, Errors errors){
-        if(errors.hasErrors()) {
+    public String processEditItemForm(@RequestParam Integer itemId,
+                                      @RequestParam(value = "price") double itemPrice,
+                                      @RequestParam(value = "qtyInStock") int itemQty){
+        Optional<Item> result = itemRepository.findById(itemId);
+        if (result.isEmpty()) {
             return "item/edit";
+        } else {
+            Item item = result.get();
+            item.setPrice(itemPrice);
+            item.setQtyInStock(itemQty);
+            itemRepository.save(item);
         }
-
-        itemRepository.save(existingItem);
-
         return "redirect:/item/";
     }
 
