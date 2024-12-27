@@ -28,6 +28,9 @@ public class Album {
     @ManyToOne(cascade = CascadeType.ALL)
     private Genre genre;
 
+    @OneToMany(mappedBy = "album")
+    private final List<Item> items = new ArrayList<>();
+
     public int getId() {
         return id;
     }
