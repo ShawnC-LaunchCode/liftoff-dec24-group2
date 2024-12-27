@@ -2,9 +2,16 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Item Detail</title>
 </head>
 <body>
+<h1 th:text="${heading}"></h1>
+<table>
+    <tr>
+        <th>Album Name</th>
+        <td th:text="${item.album.name}"></td>
+    </tr>
+</table>
 
 </body>
 </html>
