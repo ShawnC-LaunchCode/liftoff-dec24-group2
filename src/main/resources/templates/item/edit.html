@@ -23,9 +23,10 @@
     <label>Qty
         <input th:field="${item.qtyInStock}">
     </label>
-
-
     <input type="submit" value="Submit"/>
+</form>
+<form th:action="'/item/delete/' + ${item.id}" method="post">
+    <input type="submit" value = "Delete" onclick="return confirm('Confirm Item Delete')"/>
 </form>
 </body>
 </html>

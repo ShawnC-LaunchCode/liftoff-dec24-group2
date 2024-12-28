@@ -60,21 +60,11 @@ public class ItemController {
             }
 
         /*
-        // If item with same albumId, conditionType, formatType exists in itemRepository:
-            // Increment item.qtyInStock by 1
-        Album albumLookup = newItem.getAlbum();
-        ConditionType conditionTypeLookup = newItem.getConditionType();
-        FormatType formatTypeLookup = newItem.getFormatType();
-        Item existingItem = itemRepository.findByAlbumConditionFormat(albumLookup, conditionTypeLookup, formatTypeLookup);
-        if(existingItem != null){
-            // if existing item in database, inform user item exists
-            // redirect to item detail page?
-            existingItem.setQtyInStock(existingItem.getQtyInStock() + 1);
-        }
-        else{
-            // save new item
-            itemRepository.save(newItem);
-        }
+        Check itemRepository for matching album, condition, and format values of newItem
+        If item exists in database:
+            display link to edit existing item
+        else:
+            add new item
        */
             itemRepository.save(newItem);
         }
@@ -114,6 +104,13 @@ public class ItemController {
             item.setQtyInStock(itemQty);
             itemRepository.save(item);
         }
+        return "redirect:/item/";
+    }
+
+    @PostMapping("delete/{id}")
+    public String deleteItem(@PathVariable("id") int itemId) {
+        // delete item by item id
+        itemRepository.deleteById(itemId);
         return "redirect:/item/";
     }
 
