@@ -23,6 +23,9 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+//	Next 2 are for sql.
+//			First is 'database agnostic' driver that allows java to connect to databases in general.  It contains Object Relational Mapping code that takes java and reorganizes it into relational database.
+//			Second is a sql specific driver that allows Spring Boot to connect to mysql DB
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'mysql:mysql-connector-java:8.0.29'
 }
