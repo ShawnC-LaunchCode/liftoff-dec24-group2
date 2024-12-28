@@ -1,6 +1,8 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.controllers;
 
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.dto.UserDto;
+import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.User;
+import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.UserRepository;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +24,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/registration")
     public String getRegistrationPage(@ModelAttribute("user") UserDto userDto){
@@ -55,8 +60,16 @@ public class UserController {
         return  "admin";
     }
 
+
     @GetMapping("/")
-    public String homePage(){
+    public String home(Model model, Principal principal) {
+        if (principal != null) {
+            User user = userRepository.findByEmail(principal.getName());
+
+            if (user != null) {
+                model.addAttribute("user", user);
+            }
+        }
         return "index";
     }
 
