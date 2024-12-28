@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Add New Item</h1>
+
+<form method="post">
+    <label>Album
+        <select th:field="${item.album.Id}">
+            <option th:each="album : ${albums}"
+                    th:value="${album.id}"
+                    th:text="${album.name}"
+            ></option>
+        </select>
+    </label>
+    <label>Condition
+        <select th:field="${item.conditionType.Id}">
+            <option th:each="conditionType : ${conditionTypes}"
+                    th:text="${conditionType.name}"
+                    th:value="${conditionType.id}"></option>
+        </select>
+    </label>
+    <label>Format
+        <select th:field="${item.formatType.Id}">
+            <option th:each="formatType : ${formatTypes}"
+                    th:text="${formatType.name}"
+                    th:value="${formatType.id}"></option>
+        </select>
+    </label>
+    <label>Price
+        <input th:field="${item.price}">
+    </label>
+
+
+    <input type="submit" value="Submit"/>
+</form>
+
+</body>
+</html>
