@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th>Inventory</th>
+    </tr>
+    </thead>
+    <tr>
+        <th>Album Name</th>
+        <th>Format</th>
+        <th>Condition</th>
+        <th>Price</th>
+        <th>Qty Available</th>
+        <th>Edit</th>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.album.name}"></td>
+        <td th:text = "${item.formatType.name}"></td>
+        <td th:text="${item.conditionType.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.qtyInStock}"></td>
+        <td><a th:href = "'/item/edit?itemId=' + ${item.id}">Edit</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

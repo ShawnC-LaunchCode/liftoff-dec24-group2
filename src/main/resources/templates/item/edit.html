@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Modify Item</h1>
+
+<form method="post">
+    <label>Album
+        <input th:field = "${item.album.name}" readonly>
+    </label>
+    <label>Condition
+        <input th:field = ${item.conditionType.name} readonly>
+    </label>
+    <label>Format
+        <input th:field="${item.formatType.name}" readonly>
+    </label>
+    <label>Price
+        <input th:field="${item.price}">
+    </label>
+    <label>Qty
+        <input th:field="${item.qtyInStock}">
+    </label>
+
+
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
