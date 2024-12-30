@@ -14,8 +14,8 @@ public class ProductService {
 
     private final ItemRepository itemRepository;
 
-    public List<Item> getAllItems(){
-        return (List<Item>) itemRepository.findAll();
+    public Iterable<Item> getAllItems(){
+        return itemRepository.findAll();
     }
 
     public void deleteItemtById(int id) {
