@@ -5,7 +5,9 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Cascade;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -22,18 +24,18 @@ public class Event {
     private String description;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @Valid
     @NotNull
     private EventType eventType;
 
     @NotNull
-    private Date eventDate;
+    private LocalDate eventDate;
 
     public Event() {
     }
 
-    public Event(int id, String name, String description, EventType eventType, Date eventDate) {
+    public Event(int id, String name, String description, EventType eventType, LocalDate eventDate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -73,11 +75,13 @@ public class Event {
         this.eventType = eventType;
     }
 
-    public @NotNull Date getEventDate() {
+    public @NotNull LocalDate getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(@NotNull Date eventDate) {
+    public void setEventDate(@NotNull LocalDate eventDate) {
         this.eventDate = eventDate;
     }
+
+
 }
