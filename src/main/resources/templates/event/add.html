@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Event</title>
+</head>
+<body>
+<h1>Add Event</h1>
+
+<form method="post">
+    <label>
+        Event Type
+        <select th:field="${event.eventType.Id}">
+            <option th:each="eventType : ${eventTypes}"
+                    th:text="${eventType.name}"
+                    th:value="${eventType.id}"></option>
+        </select>
+    </label>
+    <label>Event Name
+        <input th:field="${event.name}">
+    </label>
+    <label>Description
+        <textarea th:field="${event.description}"></textarea>
+    </label>
+    <label>Date
+        <input type = "date" th:field="${event.eventDate}">
+    </label>
+
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
