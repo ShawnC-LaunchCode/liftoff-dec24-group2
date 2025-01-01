@@ -17,7 +17,6 @@
             ></option>
         </select>
     </label>
-    <p class="error" th:errors="${item.album.id}"></p>
     </div>
     <label>Condition
         <select th:field="${item.conditionType.Id}">
@@ -25,6 +24,7 @@
                     th:text="${conditionType.name}"
                     th:value="${conditionType.id}"></option>
         </select>
+        <span th:errors="${item.conditionType.Id}" class="error"></span>
     </label>
     <label>Format
         <select th:field="${item.formatType.Id}">

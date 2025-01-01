@@ -52,24 +52,29 @@ public class ItemController {
 
     @PostMapping("add")
     public String processAddItemForm(@ModelAttribute @Valid Item newItem,
-                                     Errors errors){
+                                     Errors errors, Model model){
 
         try {
             if (errors.hasErrors()) {
+                model.addAttribute(new Item());
+                model.addAttribute("albums", albumRepository.findAll());
+                model.addAttribute("conditionTypes", conditionTypeRepository.findAll());
+                model.addAttribute("formatTypes", formatTypeRepository.findAll());
                 return "item/add";
             }
 
-        /*
+
+            itemRepository.save(newItem);
+        }
+
+        catch (DataIntegrityViolationException e){
+       /*
         Check itemRepository for matching album, condition, and format values of newItem
         If item exists in database:
             display link to edit existing item
         else:
             add new item
        */
-            itemRepository.save(newItem);
-        }
-
-        catch (DataIntegrityViolationException e){
             return "redirect:/item/";
         }
 
