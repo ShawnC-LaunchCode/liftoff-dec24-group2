@@ -67,11 +67,11 @@ public class Event {
         this.description = description;
     }
 
-    public @NotNull EventType getEventType() {
+    public @Valid @NotNull EventType getEventType() {
         return eventType;
     }
 
-    public void setEventType(@NotNull EventType eventType) {
+    public void setEventType(@Valid @NotNull EventType eventType) {
         this.eventType = eventType;
     }
 
@@ -82,6 +82,4 @@ public class Event {
     public void setEventDate(@NotNull LocalDate eventDate) {
         this.eventDate = eventDate;
     }
-
-
 }

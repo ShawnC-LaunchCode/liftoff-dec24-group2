@@ -10,10 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "event")
@@ -45,19 +44,39 @@ public class EventController {
     @PostMapping("add")
     public String processAddEventForm(@ModelAttribute @Valid Event newEvent,
                                       Errors errors, Model model){
-
+        /*
+        -- Error Handling
         if (errors.hasErrors()) {
             model.addAttribute(new Event());
             model.addAttribute("eventTypes", eventTypeRepository.findAll());
             return "event/add";
         }
-        else {
-            eventRepository.save(newEvent);
-        }
+        */
+
+
+
+        eventRepository.save(newEvent);
+
         return "redirect:/event/";
     }
 
     // Modify Event
+    @GetMapping("edit")
+    public String displayEditEventForm(@RequestParam Integer eventId, Model model){
+        Optional<Event> result = eventRepository.findById(eventId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("heading", "Invalid Event ID: " + eventId);
+        } else {
+            Event event = result.get();
+            model.addAttribute("heading", "Modify Event: " + eventId);
+            model.addAttribute("event", event);
+            model.addAttribute("eventTypes", eventTypeRepository.findAll());
+        }
+
+        return "event/edit";
+    }
+
 
     // Delete Event
 
