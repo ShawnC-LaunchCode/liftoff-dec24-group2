@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Event List</title>
+</head>
+<body>
+<h1>Event List</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Event Listing</th>
+    </tr>
+    </thead>
+    <tr>
+        <th>Event Date</th>
+        <th>Event Type</th>
+        <th>Event Name</th>
+    </tr>
+    <tr th:each="event : ${events}">
+        <td th:text="${event.date}"></td>
+        <td th:text = "${event.eventType.name}"></td>
+        <td th:text="${event.name}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
