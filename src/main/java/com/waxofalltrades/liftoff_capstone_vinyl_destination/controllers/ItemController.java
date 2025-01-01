@@ -108,8 +108,7 @@ public class ItemController {
     }
 
     @PostMapping("delete/{id}")
-    public String deleteItem(@PathVariable("id") int itemId) {
-        // delete item by item id
+    public String processDeleteItem(@PathVariable("id") int itemId) {
         itemRepository.deleteById(itemId);
         return "redirect:/item/";
     }
