@@ -16,6 +16,8 @@ public class Item {
     @Min(0)
     private double price;
 
+    @NotNull
+    @Min(0)
     private int qtyInStock = 1;
 
     @ManyToOne

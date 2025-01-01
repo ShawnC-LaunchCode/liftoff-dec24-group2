@@ -102,7 +102,7 @@ public class ItemController {
                                       @RequestParam(value = "qtyInStock") int itemQty){
         Optional<Item> result = itemRepository.findById(itemId);
         if (result.isEmpty()) {
-            return "item/edit";
+            return "redirect:/item/";
         } else {
             Item item = result.get();
             item.setPrice(itemPrice);
