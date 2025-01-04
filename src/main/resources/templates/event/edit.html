@@ -37,5 +37,9 @@
     <input type="submit" value="Submit"/>
     <input type="hidden" th:value="${event.id}" name="eventId" />
 </form>
+<form th:action="@{/event/delete/{id}(id=${event.id})}" method="post">
+    <input type="submit" value = "Delete" onclick="return confirm('Confirm Delete')"/>
+</form>
+
 </body>
 </html>

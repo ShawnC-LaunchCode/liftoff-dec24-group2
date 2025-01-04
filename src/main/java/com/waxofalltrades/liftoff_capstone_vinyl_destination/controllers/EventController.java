@@ -99,5 +99,11 @@ public class EventController {
 
     // Delete Event
 
+    @PostMapping("delete/{eventId}")
+    public String processDeleteEvent(@PathVariable("eventId") int eventId) {
+        eventRepository.deleteById(eventId);
+        return "redirect:/event/";
+    }
+
     // Show Event Details
 }
