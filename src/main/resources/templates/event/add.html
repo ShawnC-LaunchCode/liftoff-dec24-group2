@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Event</title>
-    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<h1>Add Event</h1>
-
-<p th:text="${errorMsg}" style="color:red;"></p>
+<h1 th:text = "${heading}"></h1>
 
 <form method="post">
     <div>
@@ -20,7 +17,7 @@
                         th:value="${eventType.Id}"></option>
             </select>
         </label>
-        <p class = "error" th:errors="${event.eventType.Id}"></p>
+        <p class = "error" th:errors="${event.eventType}"></p>
     </div>
     <div>
         <label>Event Name

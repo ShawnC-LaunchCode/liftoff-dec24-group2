@@ -9,6 +9,10 @@ body {
     height: 100vh;
 }
 
+.error {
+   color: red;
+}
+
 .container {
     background-color: #ffffff;
     border-radius: 8px;
@@ -64,8 +68,4 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #45a049;
-}
-
-.error {
-   color: red;
 }

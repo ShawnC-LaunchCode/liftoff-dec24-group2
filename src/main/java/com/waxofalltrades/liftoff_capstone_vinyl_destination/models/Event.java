@@ -23,10 +23,8 @@ public class Event {
     @Size(min = 3, max = 1250)
     private String description;
 
-
     @ManyToOne
-    @Valid
-    @NotNull
+    @NotNull(message = "Event Type Required")
     private EventType eventType;
 
     @NotNull
@@ -82,4 +80,5 @@ public class Event {
     public void setEventDate(@NotNull LocalDate eventDate) {
         this.eventDate = eventDate;
     }
+
 }
