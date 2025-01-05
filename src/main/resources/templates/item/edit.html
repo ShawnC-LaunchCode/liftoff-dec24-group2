@@ -7,7 +7,7 @@
 <body>
 <h1>Modify Item</h1>
 
-<form method="post">
+<form th:action="@{/item/edit}" method="post">
     <label>Album
         <input th:field = "${item.album.name}" readonly>
     </label>
@@ -24,6 +24,7 @@
         <input th:field="${item.qtyInStock}">
     </label>
     <input type="submit" value="Submit"/>
+    <input type="hidden" th:value="${item.id}" name="itemId" />
 </form>
 <form th:action="'/item/delete/' + ${item.id}" method="post">
     <input type="submit" value = "Delete" onclick="return confirm('Confirm Item Delete')"/>

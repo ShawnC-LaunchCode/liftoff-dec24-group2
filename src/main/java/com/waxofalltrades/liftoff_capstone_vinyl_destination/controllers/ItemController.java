@@ -81,8 +81,8 @@ public class ItemController {
         return "redirect:/item/";
     }
 
-    @GetMapping("edit")
-    public String displayEditItemForm(@RequestParam Integer itemId, Model model){
+    @GetMapping("edit/{itemId}")
+    public String displayEditItemForm(@PathVariable int itemId, Model model){
         Optional<Item> result = itemRepository.findById(itemId);
 
         if (result.isEmpty()) {
