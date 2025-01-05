@@ -106,4 +106,20 @@ public class EventController {
     }
 
     // Show Event Details
+    @GetMapping("detail/{eventId}")
+    public String displayEventDetail(Model model, @PathVariable int eventId) {
+        Optional<Event> currentEvent = eventRepository.findById(eventId);
+
+        if (currentEvent.isEmpty()) {
+            model.addAttribute("heading", "Invalid Event ID: " + eventId);
+        } else {
+            Event event = currentEvent.get();
+            model.addAttribute("heading", "Event Detail: " + event.getName() + " (ID: " + event.getId() + ")");
+            model.addAttribute("event", event);
+        }
+
+        return "event/detail";
+    }
+
+
 }
