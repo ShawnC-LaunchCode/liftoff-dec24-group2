@@ -2,6 +2,7 @@ package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Cascade;
@@ -16,7 +17,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @NotNull
+    @NotBlank(message = "Name is required")
     @Size(min = 3, max = 120)
     private String name;
 
@@ -24,7 +25,7 @@ public class Event {
     private String description;
 
     @ManyToOne
-    @NotNull(message = "Event Type Required")
+    @NotNull
     private EventType eventType;
 
     @NotNull
@@ -49,11 +50,11 @@ public class Event {
         this.id = id;
     }
 
-    public @NotNull @Size(min = 3, max = 120) String getName() {
+    public @NotBlank(message = "Name is required") @Size(min = 3, max = 120) String getName() {
         return name;
     }
 
-    public void setName(@NotNull @Size(min = 3, max = 120) String name) {
+    public void setName(@NotBlank(message = "Name is required") @Size(min = 3, max = 120) String name) {
         this.name = name;
     }
 
@@ -65,11 +66,11 @@ public class Event {
         this.description = description;
     }
 
-    public @Valid @NotNull EventType getEventType() {
+    public @NotNull EventType getEventType() {
         return eventType;
     }
 
-    public void setEventType(@Valid @NotNull EventType eventType) {
+    public void setEventType(@NotNull EventType eventType) {
         this.eventType = eventType;
     }
 
@@ -80,5 +81,4 @@ public class Event {
     public void setEventDate(@NotNull LocalDate eventDate) {
         this.eventDate = eventDate;
     }
-
 }

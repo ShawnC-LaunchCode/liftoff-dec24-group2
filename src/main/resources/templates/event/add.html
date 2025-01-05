@@ -8,6 +8,7 @@
 <h1 th:text = "${heading}"></h1>
 
 <form method="post">
+
     <div>
         <label>
             Event Type
@@ -17,7 +18,6 @@
                         th:value="${eventType.Id}"></option>
             </select>
         </label>
-        <p class = "error" th:errors="${event.eventType}"></p>
     </div>
     <div>
         <label>Event Name
