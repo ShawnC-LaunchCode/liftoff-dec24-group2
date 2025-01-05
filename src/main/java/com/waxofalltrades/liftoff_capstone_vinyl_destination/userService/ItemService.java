@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService {
+public class ItemService {
 
     private final ItemRepository itemRepository;
 
@@ -18,16 +18,16 @@ public class ProductService {
         return itemRepository.findAll();
     }
 
-    public void deleteItemtById(int id) {
+    public void deleteItemById(int id) {
         itemRepository.deleteById(id);
     }
 
-    public Optional<Item> getProductById(int id) {
+    public Optional<Item> getItemById(int id) {
         return itemRepository.findById(id);
     }
 
 
-    public void addProduct(Item item) {
+    public void addItem(Item item) {
         itemRepository.save(item);
     }
 
