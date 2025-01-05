@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ItemService {
 
-    private final ItemRepository itemRepository;
+    private ItemRepository itemRepository;
 
     public Iterable<Item> getAllItems(){
         return itemRepository.findAll();

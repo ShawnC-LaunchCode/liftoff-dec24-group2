@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 @RequiredArgsConstructor
 public class CartController {
-    private final ItemService itemService;
+    private ItemService itemService;
 
     @GetMapping("/cart/{id}")
     public String addToCart (@PathVariable int id){
