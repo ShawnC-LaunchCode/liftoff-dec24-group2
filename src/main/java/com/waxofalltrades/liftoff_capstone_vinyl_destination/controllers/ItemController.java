@@ -57,6 +57,7 @@ public class ItemController {
         try {
             if (errors.hasErrors()) {
                 model.addAttribute(new Item());
+                // model.addAttribute("errorMsg", "Bad data!");
                 model.addAttribute("albums", albumRepository.findAll());
                 model.addAttribute("conditionTypes", conditionTypeRepository.findAll());
                 model.addAttribute("formatTypes", formatTypeRepository.findAll());
@@ -86,10 +87,10 @@ public class ItemController {
         Optional<Item> result = itemRepository.findById(itemId);
 
         if (result.isEmpty()) {
-            model.addAttribute("heading", "Invalid Event ID: " + itemId);
+            model.addAttribute("heading", "Invalid Item ID: " + itemId);
         } else {
             Item item = result.get();
-            model.addAttribute("heading", "Modify Item: " + itemId);
+            model.addAttribute("heading", "Modify Item: " + item.getAlbum().getName() + " (ID: " + item.getId() + ")");
             model.addAttribute("item", item);
         }
 
