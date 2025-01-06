@@ -1,8 +1,8 @@
 <!DocTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>SHOP</title>
+    <title>Title</title>
 </head>
 <body>
 <h1>Shop All Items</h1>
@@ -27,13 +27,12 @@
             <td th:text="${item.conditionType.name}"></td>
             <td th:text="${item.price}"></td>
             <td th:text="${item.qtyInStock}"></td>
-            <td><button th:href="@{/cart/{id}(id=${product.id})}" >
+            <td><button th:href="@{/cart/{id}(id=${item.id})}" >
                 Add to Cart
             </button></td>
         </tr>
     </table>
 
 </div>
-
 </body>
 </html>

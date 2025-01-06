@@ -16,7 +16,7 @@ public class CartController {
     public String addToCart (@PathVariable int id){
         ShoppingCart.cart.add(itemService.getItemById(id).get());
 
-        return "redirect:/shop/details";
+        return "redirect:/shop/list";
 
     }
 
