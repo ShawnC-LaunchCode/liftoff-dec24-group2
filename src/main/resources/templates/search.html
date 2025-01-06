@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <title>Search</title>
 </head>
 <body>
-$END$
+
+<div class="container">
+<form th:action="@{/search/results}" method = "post">
+  <h2>Search By</h2>
+<!--Having the option to "search by" different categories is how GA4 is laid out, but having that option makes more sense if you're searching for jobs by either employer or title or location.  BUT it's probably worth doing for our purposes as well, even if we only have two categories to search by: album and artist.  I'm not sure if "genre" will be part of "search by" or if it's a separate thing like, say, a filter function.  Is filter just a specific kind of search method?  Something to find out.-->
+</form>
+
+
+  </div>
+
+
+
+
 </body>
 </html>
