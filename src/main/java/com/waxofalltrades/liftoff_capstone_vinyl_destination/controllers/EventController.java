@@ -80,14 +80,17 @@ public class EventController {
                                        @RequestParam(value = "name") String eventName,
                                        @RequestParam(value = "description") String eventDescription,
                                        @RequestParam(value = "eventDate") LocalDate eventDate,
-                                       @RequestParam(value = "eventType") EventType eventType) {
+                                       @RequestParam(value = "eventType.Id") int eventTypeId) {
         Optional<Event> currentEvent = eventRepository.findById(eventId);
+        Optional<EventType> newEventType = eventTypeRepository.findById(eventTypeId);
+
         if (currentEvent.isEmpty()) {
             return "redirect:/event/";
         }
 
         Event event = currentEvent.get();
-        // event.setEventType(eventType); // Error: Required parameter 'eventType' is not present.
+        if(newEventType.isPresent()){event.setEventType(newEventType.get());}
+        //event.setEventType(newEventType); // Error: Required parameter 'eventType' is not present.
         event.setName(eventName);
         event.setDescription(eventDescription);
         event.setEventDate(eventDate);
