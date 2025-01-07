@@ -1,0 +1,33 @@
+<!DocTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<h1>Shop All Items</h1>
+
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>Available Items</th>
+        </tr>
+        </thead>
+        <tr>
+            <th>Album Name</th>
+            <th>Format</th>
+            <th>Condition</th>
+            <th>Price</th>
+        </tr>
+        <tr th:each="cartItems : ${cart}">
+            <td th:text="${cartItems.album.name}"></td>
+            <td th:text = "${cartItems.formatType.name}"></td>
+            <td th:text="${cartItems.conditionType.name}"></td>
+            <td th:text="${cartItems.price}"></td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

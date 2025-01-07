@@ -28,7 +28,7 @@
             <td th:text="${item.conditionType.name}"></td>
             <td th:text="${item.price}"></td>
             <td th:text="${item.qtyInStock}"></td>
-            <td><button th:href="@{/cart/{id}(id=${item.id})}" >
+            <td><button th:onclick="|window.location.href='/cart/' + ${item.id}|">
                 Add to Cart
             </button></td>
         </tr>
