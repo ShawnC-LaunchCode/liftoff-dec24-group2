@@ -20,11 +20,14 @@
             <th>Condition</th>
             <th>Price</th>
         </tr>
-        <tr th:each="cartItems : ${cart}">
+        <tr th:each="cartItems, cartIndex : ${cart}">
             <td th:text="${cartItems.album.name}"></td>
             <td th:text = "${cartItems.formatType.name}"></td>
             <td th:text="${cartItems.conditionType.name}"></td>
             <td th:text="${cartItems.price}"></td>
+            <td><button th:onclick="|window.location.href='/remove/' + ${cartIndex.index}|">
+                Remove Item
+            </button></td>
         </tr>
     </table>
 

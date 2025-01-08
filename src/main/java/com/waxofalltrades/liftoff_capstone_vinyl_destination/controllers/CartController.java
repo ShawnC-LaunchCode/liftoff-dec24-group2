@@ -27,5 +27,11 @@ public class CartController {
     return "shop/cart-details";
 }
 
+@GetMapping("/remove/{index}")
+    public String removeItem(@PathVariable int index){
+    ShoppingCart.cart.remove(index);
+    return "redirect:/cart";
+}
+
 
 }
