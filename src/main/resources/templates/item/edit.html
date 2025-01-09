@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="~{fragments :: head}"></head>
 <body>
 <h1 th:text="${heading}"></h1>
 
 <p th:text="${errorMsg}" style="color:red;"></p>
 
 <form th:action="@{/item/edit}" method="post">
-    <label>Album
-        <input th:field = "${item.album.name}" readonly>
-    </label>
-    <label>Condition
-        <input th:field = ${item.conditionType.name} readonly>
-    </label>
-    <label>Format
-        <input th:field="${item.formatType.name}" readonly>
-    </label>
-    <label>Price
-        <input th:field="${item.price}">
-    </label>
-    <label>Qty
-        <input th:field="${item.qtyInStock}">
-    </label>
-    <input type="submit" value="Submit"/>
-    <input type="hidden" th:value="${item.id}" name="itemId" />
+    <div>
+        <label>Album
+            <input class="form-control" th:field="${item.album.name}" readonly>
+        </label>
+    </div>
+    <div>
+        <label>Condition
+            <input class="form-control" th:field=${item.conditionType.name} readonly>
+        </label>
+    </div>
+    <div>
+        <label>Format
+            <input class="form-control" th:field="${item.formatType.name}" readonly>
+        </label>
+    </div>
+    <div>
+        <label>Price
+            <input class="form-control" th:field="${item.price}">
+        </label>
+    </div>
+    <div>
+        <label>Qty
+            <input class="form-control" th:field="${item.qtyInStock}">
+        </label>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Submit"/>
+    <input type="hidden" th:value="${item.id}" name="itemId"/>
 </form>
 <form th:action="'/item/delete/' + ${item.id}" method="post">
-    <input type="submit" value = "Delete" onclick="return confirm('Confirm Item Delete')"/>
+    <input class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Confirm Item Delete')"/>
 </form>
 </body>
 </html>
