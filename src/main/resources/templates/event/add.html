@@ -9,7 +9,7 @@
 
 <form method="post">
 
-    <div>
+    <div class = "dropdown">
         <label>
             Event Type
             <select th:field="${event.eventType.Id}">
@@ -19,26 +19,26 @@
             </select>
         </label>
     </div>
-    <div>
+    <div class = "form-group">
         <label>Event Name
             <input th:field="${event.name}">
         </label>
         <p class = "error"  th:errors="${event.name}"></p>
     </div>
-    <div>
+    <div class = "form-group">
         <label>Description
             <textarea th:field="${event.description}"></textarea>
         </label>
         <p class = "error" th:errors="${event.description}"></p>
     </div>
-    <div>
+    <div class = "form-group">
         <label>Date
             <input type="date" th:field="${event.eventDate}">
         </label>
         <p class = "error"  th:errors="${event.eventDate}"></p>
     </div>
 
-    <input type="submit" value="Submit"/>
+    <input class = "btn btn-primary" type="submit" value="Submit"/>
 </form>
 </body>
 </html>
