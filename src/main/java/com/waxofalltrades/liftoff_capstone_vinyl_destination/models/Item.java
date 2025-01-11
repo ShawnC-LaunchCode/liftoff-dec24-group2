@@ -13,7 +13,7 @@ public class Item {
     private int id;
 
     @NotNull
-    @Min(0)
+    @Min(value = 0, message = "Value must be greater than 0")
     private double price;
 
     @NotNull
