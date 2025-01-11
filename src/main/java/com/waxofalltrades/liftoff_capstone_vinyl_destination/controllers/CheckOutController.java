@@ -42,8 +42,8 @@ public class CheckOutController {
 
         SessionCreateParams params = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl("localhost:8080/shop/success")
-                .setCancelUrl("localhost:808/shop/cancel")
+                .setSuccessUrl("http://localhost:8080/shop/success")
+                .setCancelUrl("http://localhost:8080/shop/cancel")
                 .addAllLineItem(lineItems)
                 .setShippingAddressCollection(
                         SessionCreateParams.ShippingAddressCollection.builder().addAllowedCountry(
