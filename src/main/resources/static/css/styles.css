@@ -9,6 +9,10 @@ body {
     height: 100vh;
 }
 
+.error {
+   color: red;
+}
+
 .container {
     background-color: #ffffff;
     border-radius: 8px;
