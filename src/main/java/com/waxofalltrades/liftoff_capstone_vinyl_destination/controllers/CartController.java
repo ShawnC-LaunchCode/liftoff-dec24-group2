@@ -33,5 +33,9 @@ public class CartController {
     return "redirect:/cart";
 }
 
-
+@GetMapping("/shop/success")
+    public String checkoutSuccess(){
+    ShoppingCart.cart.clear();
+    return "/shop/paid";
+}
 }
