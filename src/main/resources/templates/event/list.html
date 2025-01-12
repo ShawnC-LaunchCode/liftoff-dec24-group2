@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Event List</title>
-</head>
+<head th:replace="~{fragments :: head}"></head>
 <body>
-<h1>Event List</h1>
+<h2 class = "h2">Event Listing</h2>
 
-<table>
-    <thead>
+<table class="table table-striped" style="text-align: center">
+    <thead class="table-dark">
     <tr>
-        <th>Event Listing</th>
+        <th scope="col">Event Date</th>
+        <th scope="col">Event Type</th>
+        <th scope="col">Event Name</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
     </tr>
     </thead>
-    <tr>
-        <th>Event Date</th>
-        <th>Event Type</th>
-        <th>Event Name</th>
-    </tr>
     <tr th:each="event : ${events}">
         <td th:text="${event.eventDate}"></td>
         <td th:text = "${event.eventType.name}"></td>
