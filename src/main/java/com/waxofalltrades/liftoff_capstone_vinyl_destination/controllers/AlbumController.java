@@ -115,4 +115,20 @@ public class AlbumController {
         return "redirect:/album/";
     }
 
+    // Display Inventory
+    @GetMapping("inventory/{albumId}")
+    public String viewAlbumInventory(@PathVariable("albumId") int albumId, Model model){
+        Optional<Album> result = albumRepository.findById(albumId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("heading", "Invalid Album ID: " + albumId);
+        } else {
+            Album album = result.get();
+            model.addAttribute("heading", "Inventory For: " + album.getName() + " (ID: " + album.getId() + ")");
+            model.addAttribute("album", album);
+            model.addAttribute("items", album.getItems());
+        }
+
+        return "album/inventory";
+    }
 }

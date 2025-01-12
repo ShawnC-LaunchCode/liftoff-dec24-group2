@@ -60,11 +60,10 @@ public class Album {
         this.releaseDate = releaseDate;
     }
 
-    /*
     public List<Item> getItems() {
         return items;
     }
-    */
+
     public Image getAlbumImage() {
         return albumImage;
     }
