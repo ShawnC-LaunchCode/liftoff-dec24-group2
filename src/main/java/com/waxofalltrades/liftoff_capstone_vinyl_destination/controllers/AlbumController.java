@@ -109,6 +109,10 @@ public class AlbumController {
 
 
     // Delete album
-
+    @PostMapping("delete/{albumId}")
+    public String processDeleteAlbum(@PathVariable("albumId") int albumId) {
+        albumRepository.deleteById(albumId);
+        return "redirect:/album/";
+    }
 
 }
