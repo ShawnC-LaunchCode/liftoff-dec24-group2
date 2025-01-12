@@ -19,10 +19,10 @@ public class Event {
     private int id;
 
     @NotBlank(message = "Name is required")
-    @Size(min = 3, max = 120)
+    @Size(min = 3, max = 120, message = "Name must be between 3 and 120 characters")
     private String name;
 
-    @Size(min = 3, max = 1250)
+    @Size(min = 3, max = 1250, message = "Description must be between 3 and 1250 characters")
     private String description;
 
     @ManyToOne
