@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Cascade;
 import org.springframework.cglib.core.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -28,6 +29,7 @@ public class Event {
     @NotNull
     private EventType eventType;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
     private LocalDate eventDate;
 
