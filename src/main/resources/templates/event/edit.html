@@ -14,7 +14,7 @@
                         th:value="${eventType.Id}"></option>
             </select>
         </label>
-        <p class = "error" th:errors="${event.eventType}"></p>
+        <p class = "text-danger" th:errors="${event.eventType}"></p>
     </div>
     <div class = "form-group">
     <label>Event Name
@@ -25,13 +25,13 @@
         <label>Description
             <textarea th:field="${event.description}"></textarea>
         </label>
-        <p class = "error" th:errors="${event.description}"></p>
+        <p class = "text-danger" th:errors="${event.description}"></p>
     </div>
     <div class = "form-group">
         <label>Date
             <input type="date" th:field="${event.eventDate}">
         </label>
-        <p class = "error"  th:errors="${event.eventDate}"></p>
+        <p class = "text-danger"  th:errors="${event.eventDate}"></p>
     </div>
     <input class = "btn btn-primary" type="submit" value="Submit"/>
     <input type="hidden" th:value="${event.id}" name="eventId" />
