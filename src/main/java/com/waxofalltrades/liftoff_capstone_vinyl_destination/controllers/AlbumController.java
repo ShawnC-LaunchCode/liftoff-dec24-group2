@@ -1,6 +1,8 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.controllers;
 
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Album;
+import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Artist;
+import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Genre;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Item;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.AlbumRepository;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.ArtistRepository;
@@ -10,10 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "album")
@@ -63,8 +65,48 @@ public class AlbumController {
         return "redirect:/album/";
     }
     // Display Edit album form
+    @GetMapping("edit/{albumId}")
+    public String displayEditAlbumForm(@PathVariable int albumId, Model model){
+        Optional<Album> result = albumRepository.findById(albumId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("heading", "Invalid Album ID: " + albumId);
+        } else {
+            Album album = result.get();
+            model.addAttribute("heading", "Modify Album: " + album.getName() + " (ID: " + album.getId() + ")");
+            model.addAttribute("album", album);
+            model.addAttribute("artists", artistRepository.findAll());
+            model.addAttribute("genres", genreRepository.findAll());
+        }
+
+        return "album/edit";
+    }
+
 
     // Process edit album form
+    @PostMapping("edit")
+    public String processEditAlbumForm(@RequestParam Integer albumId,
+                                      @RequestParam(value = "name") String albumName,
+                                      @RequestParam(value = "artist.Id") int artistId,
+                                       @RequestParam(value = "genre.Id") int genreId,
+                                      @RequestParam(value = "releaseDate") LocalDate releaseDate){
+        Optional<Album> result = albumRepository.findById(albumId);
+        Optional<Artist> newArtist = artistRepository.findById(artistId);
+        Optional<Genre> newGenre = genreRepository.findById(genreId);
+
+        if (result.isEmpty()) {
+            return "redirect:/album/";
+        } else {
+            Album album = result.get();
+            album.setName(albumName);
+            if(newArtist.isPresent()) {album.setArtist(newArtist.get());}
+            if(newGenre.isPresent()){album.setGenre(newGenre.get());}
+            album.setReleaseDate(releaseDate);
+            albumRepository.save(album);
+        }
+        return "redirect:/album/";
+    }
+
 
     // Delete album
 

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}"></head>
+<head th:replace = "~{fragments :: head}"></head>
 <body>
-<header th:replace="~{fragments :: header}"></header>
-<h1>Add New Album</h1>
+<header th:replace = "~{fragments :: header}"></header>
+<h1 th:text="${heading}"></h1>
 
 <p th:text="${errorMsg}" style="color:red;"></p>
 
-<form method="post">
+<form th:action="@{/album/edit}" method="post">
     <div class="form-group">
         <label>Name
             <input th:field="${album.name}">
@@ -40,6 +40,12 @@
     </div>
 
     <input class = "btn btn-primary" type="submit" value="Submit"/>
+    <input type="hidden" th:value="${album.id}" name="albumId" />
+
+
+</form>
+<form th:action="'/album/delete/' + ${album.id}" method="post">
+    <input class = "btn btn-danger" type="submit" value = "Delete" onclick="return confirm('Confirm Delete')"/>
 </form>
 
 </body>
