@@ -5,15 +5,14 @@
 <header th:replace="~{fragments :: header}"></header>
 <h2 class="h2">Album List</h2>
 
-<table>
-    <thead>
+<table class="table table-striped" style="text-align: center">
+    <thead class="table-dark">
     <tr>
-        <th>Album Name</th>
-        <th>Artist</th>
-        <th>Genre</th>
-        <th>Release Date</th>
-        <th>Qty Available</th>
-        <th>Edit</th>
+        <th scope="col">Album Name</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Release Date</th>
+        <th scope="col">Edit</th>
     </tr>
     </thead>
     <tr th:each="album : ${albums}">
