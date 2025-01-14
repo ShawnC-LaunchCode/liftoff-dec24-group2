@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="~{fragments :: head}"></head>
 <body>
+<header th:replace="~{fragments :: header}"></header>
 <h1 th:text="${heading}"></h1>
 
 <form th:action="@{/event/edit}" method="post">
-    <div>
+    <div class = "dropdown">
         <label>
             Event Type
             <select th:field="${event.eventType.Id}">
@@ -17,28 +15,30 @@
                         th:value="${eventType.Id}"></option>
             </select>
         </label>
-        <p class = "error" th:errors="${event.eventType}"></p>
+        <p class = "text-danger" th:errors="${event.eventType}"></p>
     </div>
+    <div class = "form-group">
     <label>Event Name
         <input th:field="${event.name}" th:value = "${event.name}">
     </label>
-    <div>
+    </div>
+    <div class = "form-group">
         <label>Description
             <textarea th:field="${event.description}"></textarea>
         </label>
-        <p class = "error" th:errors="${event.description}"></p>
+        <p class = "text-danger" th:errors="${event.description}"></p>
     </div>
-    <div>
+    <div class = "form-group">
         <label>Date
             <input type="date" th:field="${event.eventDate}">
         </label>
-        <p class = "error"  th:errors="${event.eventDate}"></p>
+        <p class = "text-danger"  th:errors="${event.eventDate}"></p>
     </div>
-    <input type="submit" value="Submit"/>
+    <input class = "btn btn-primary" type="submit" value="Submit"/>
     <input type="hidden" th:value="${event.id}" name="eventId" />
 </form>
 <form th:action="@{/event/delete/{id}(id=${event.id})}" method="post">
-    <input type="submit" value = "Delete" onclick="return confirm('Confirm Delete')"/>
+    <input class="btn btn-danger" type="submit" value = "Delete" onclick="return confirm('Confirm Delete')"/>
 </form>
 
 </body>

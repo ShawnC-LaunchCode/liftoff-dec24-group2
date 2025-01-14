@@ -8,12 +8,15 @@ import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.EventT
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.ItemRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -29,8 +32,7 @@ public class EventController {
     // Display all Events
     @RequestMapping("/")
     public String displayAllEvents(Model model) {
-        model.addAttribute("events", eventRepository.findAll());
-
+        model.addAttribute("events", eventRepository.findAllByOrderByEventDateAsc());
         return "event/list";
     }
 

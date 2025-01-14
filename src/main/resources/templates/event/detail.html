@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="~{fragments :: head}"></head>
 <body>
-<h1 th:text="${heading}"></h1>
+<header th:replace="~{fragments :: header}"></header>
+<h2 class="h2" th:text="${heading}"></h2>
 
-<table>
+<table class="table table-striped w-auto" style="text-align: center" >
     <tr>
         <th>Event Date</th>
         <td th:text="${event.eventDate}"></td>
