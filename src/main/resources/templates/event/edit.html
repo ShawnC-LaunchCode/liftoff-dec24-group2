@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="${heading}"></h1>
+
+<form th:action="@{/event/edit}" method="post">
+    <div>
+        <label>
+            Event Type
+            <select th:field="${event.eventType.Id}">
+                <option th:each="eventType : ${eventTypes}"
+                        th:text="${eventType.name}"
+                        th:value="${eventType.Id}"></option>
+            </select>
+        </label>
+        <p class = "error" th:errors="${event.eventType}"></p>
+    </div>
+    <label>Event Name
+        <input th:field="${event.name}" th:value = "${event.name}">
+    </label>
+    <div>
+        <label>Description
+            <textarea th:field="${event.description}"></textarea>
+        </label>
+        <p class = "error" th:errors="${event.description}"></p>
+    </div>
+    <div>
+        <label>Date
+            <input type="date" th:field="${event.eventDate}">
+        </label>
+        <p class = "error"  th:errors="${event.eventDate}"></p>
+    </div>
+    <input type="submit" value="Submit"/>
+    <input type="hidden" th:value="${event.id}" name="eventId" />
+</form>
+<form th:action="@{/event/delete/{id}(id=${event.id})}" method="post">
+    <input type="submit" value = "Delete" onclick="return confirm('Confirm Delete')"/>
+</form>
+
+</body>
+</html>

@@ -51,32 +51,28 @@ public class ItemController {
     }
 
     @PostMapping("add")
-    public String processAddItemForm(@ModelAttribute @Valid Item newItem,
+    public String processAddItemForm(@Valid @ModelAttribute("data") Item newItem,
                                      Errors errors, Model model){
 
         try {
             if (errors.hasErrors()) {
                 model.addAttribute(new Item());
-                // model.addAttribute("errorMsg", "Bad data!");
+                model.addAttribute("errorMsg", "Error: Ensure Selection Made for All Fields and Price is Greater than 0");
                 model.addAttribute("albums", albumRepository.findAll());
                 model.addAttribute("conditionTypes", conditionTypeRepository.findAll());
                 model.addAttribute("formatTypes", formatTypeRepository.findAll());
                 return "item/add";
             }
-
-
             itemRepository.save(newItem);
         }
 
         catch (DataIntegrityViolationException e){
-       /*
-        Check itemRepository for matching album, condition, and format values of newItem
-        If item exists in database:
-            display link to edit existing item
-        else:
-            add new item
-       */
-            return "redirect:/item/";
+            model.addAttribute("errorMsg", "Item already in inventory");
+            model.addAttribute(new Item());
+            model.addAttribute("albums", albumRepository.findAll());
+            model.addAttribute("conditionTypes", conditionTypeRepository.findAll());
+            model.addAttribute("formatTypes", formatTypeRepository.findAll());
+            return "item/add";
         }
 
         return "redirect:/item/";

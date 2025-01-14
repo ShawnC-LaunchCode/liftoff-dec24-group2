@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Event</title>
+</head>
+<body>
+<h1 th:text = "${heading}"></h1>
+
+<form method="post">
+
+    <div class = "dropdown">
+        <label>
+            Event Type
+            <select th:field="${event.eventType.Id}">
+                <option th:each="eventType : ${eventTypes}"
+                        th:text="${eventType.name}"
+                        th:value="${eventType.Id}"></option>
+            </select>
+        </label>
+    </div>
+    <div class = "form-group">
+        <label>Event Name
+            <input th:field="${event.name}">
+        </label>
+        <p class = "error"  th:errors="${event.name}"></p>
+    </div>
+    <div class = "form-group">
+        <label>Description
+            <textarea th:field="${event.description}"></textarea>
+        </label>
+        <p class = "error" th:errors="${event.description}"></p>
+    </div>
+    <div class = "form-group">
+        <label>Date
+            <input type="date" th:field="${event.eventDate}">
+        </label>
+        <p class = "error"  th:errors="${event.eventDate}"></p>
+    </div>
+
+    <input class = "btn btn-primary" type="submit" value="Submit"/>
+</form>
+</body>
+</html>
