@@ -17,8 +17,8 @@ public class EventType {
     @Size(min = 3, max = 45)
     private String name;
 
-    @OneToOne(mappedBy = "eventType")
-    private Event event;
+    @OneToMany(mappedBy = "eventType")
+    private final List<Event> events = new ArrayList<>();
 
     public EventType() {
     }

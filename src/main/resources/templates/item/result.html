@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="~{fragments :: head}"></head>
 <body>
-
-<table>
-    <thead>
+<header th:replace="~{fragments :: header}"></header>
+<a th:href="@{/item/add}">Add New Item</a>
+<table class="table table-striped" style="text-align: center">
+    <thead class="table-dark">
     <tr>
-        <th>Inventory</th>
+        <th scope="col">Album</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Format</th>
+        <th scope="col">Condition</th>
+        <th scope="col">Price</th>
+        <th scope="col">Qty Available</th>
+        <th scope="col"></th>
     </tr>
     </thead>
-    <tr>
-        <th>Album Name</th>
-        <th>Format</th>
-        <th>Condition</th>
-        <th>Price</th>
-        <th>Qty Available</th>
-        <th>Edit</th>
-    </tr>
     <tr th:each="item : ${items}">
         <td th:text="${item.album.name}"></td>
-        <td th:text = "${item.formatType.name}"></td>
+        <td th:text="${item.album.artist.name}"></td>
+        <td th:text="${item.album.genre.name}"></td>
+        <td th:text="${item.formatType.name}"></td>
         <td th:text="${item.conditionType.name}"></td>
         <td th:text="${item.price}"></td>
         <td th:text="${item.qtyInStock}"></td>
-        <td><a th:href = "@{/item/edit/{id}(id=${item.id})}">Edit</a></td>
+        <td><a th:href="@{/item/edit/{id}(id=${item.id})}">Edit</a></td>
     </tr>
 </table>
 
