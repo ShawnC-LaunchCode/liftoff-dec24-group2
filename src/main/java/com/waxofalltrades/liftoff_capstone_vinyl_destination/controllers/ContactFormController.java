@@ -8,14 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "contact")
@@ -48,9 +46,24 @@ public class ContactFormController {
     @GetMapping("list")
     public String displayContactFormSubmission(Model model){
 
-        model.addAttribute("submissions", contactFormRepository.findAll());
+        model.addAttribute("contacts", contactFormRepository.findAll());
         return "contact/list";
     }
 
+    // Display Contact Form Submissions
+    @GetMapping("detail/{contactFormId}")
+    public String displayContactFormSubmissionDetail(Model model, @PathVariable int contactFormId){
+        Optional<ContactForm> currentContactForm = contactFormRepository.findById(contactFormId);
+        if(currentContactForm.isEmpty()){
+            model.addAttribute("heading", "Invalid Contact Form Submission");
+        }
+        else{
+            ContactForm result = currentContactForm.get();
+            model.addAttribute("heading", "Contact Form Submission Detail");
+            model.addAttribute("contact", result);
+        }
+
+        return "contact/detail";
+    }
 
 }

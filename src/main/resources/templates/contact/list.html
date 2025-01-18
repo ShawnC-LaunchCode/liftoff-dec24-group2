@@ -15,12 +15,12 @@
         <th scope="col"></th>
     </tr>
     </thead>
-    <tr th:each="submission : ${submissions}">
-        <td th:text="${submission.submissionDateTime}"></td>
-        <td th:text="${submission.name}"></td>
-        <td th:text="${submission.emailAddress}"></td>
-        <td th:text="${submission.heading}"></td>
-        <td>Detail</td>
+    <tr th:each="contact : ${contacts}">
+        <td th:text="${contact.submissionDateTime}"></td>
+        <td th:text="${contact.name}"></td>
+        <td th:text="${contact.emailAddress}"></td>
+        <td th:text="${contact.heading}"></td>
+        <td><a th:href = "@{/contact/detail/{id}(id=${contact.id})}">Detail</a></td>
     </tr>
 </table>
 
