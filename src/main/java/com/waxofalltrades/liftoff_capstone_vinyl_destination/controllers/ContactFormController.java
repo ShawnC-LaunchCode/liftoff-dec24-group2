@@ -27,7 +27,7 @@ public class ContactFormController {
     @GetMapping("/")
     public String displayContactForm(Model model){
         model.addAttribute(new ContactForm());
-        return "contact";
+        return "contact/add";
     }
 
     // Post Submission
@@ -35,7 +35,7 @@ public class ContactFormController {
     public String processContactForm(@ModelAttribute @Valid ContactForm newContactForm, Errors errors, Model model){
         if (errors.hasErrors()) {
             model.addAttribute(new Item());
-            return "contact";
+            return "contact/add";
         }
 
         newContactForm.setSubmissionDateTime(LocalDateTime.now());
@@ -43,5 +43,14 @@ public class ContactFormController {
         return "redirect:/";
 
     }
+
+    // Display Contact Form Submissions
+    @GetMapping("list")
+    public String displayContactFormSubmission(Model model){
+
+        model.addAttribute("submissions", contactFormRepository.findAll());
+        return "contact/list";
+    }
+
 
 }
