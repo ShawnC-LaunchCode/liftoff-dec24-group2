@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace = "~{fragments :: head}"></head>
 <body>
+<header th:replace = "~{fragments :: header}"></header>
 <h1>Contact Form</h1>
 
 
 <form method="post">
-    <div>
+    <div class = "form-group">
         <label>Name
             <input th:field="${contactForm.name}">
         </label>
-        <p class="error" th:errors="${contactForm.name}"></p>
+        <p class="text-danger" th:errors="${contactForm.name}"></p>
     </div>
-    <div>
+    <div class = "form-group">
         <label>Email Address
             <input th:field="${contactForm.emailAddress}">
         </label>
-        <p class="error" th:errors="${contactForm.emailAddress}"></p>
+        <p class="text-danger" th:errors="${contactForm.emailAddress}"></p>
     </div>
-    <div>
+    <div class = "form-group">
         <label>Message
             <textarea th:field="${contactForm.message}"></textarea>
         </label>
     </div>
-    <input type="submit" value="Submit"/>
+    <input class = "btn btn-primary" type="submit" value="Submit"/>
 </form>
 </body>
 </html>
