@@ -1,9 +1,14 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class ContactForm {
@@ -22,11 +27,15 @@ public class ContactForm {
     @Column(columnDefinition = "TEXT")
     private String message;
 
-    public ContactForm(int id, String name, String emailAddress, String message) {
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime submissionDateTime;
+
+    public ContactForm(int id, String name, String emailAddress, String message, LocalDateTime submissionDateTime) {
         this.id = id;
         this.name = name;
         this.emailAddress = emailAddress;
         this.message = message;
+        this.submissionDateTime = submissionDateTime;
     }
 
     public ContactForm() {
@@ -64,4 +73,11 @@ public class ContactForm {
         this.message = message;
     }
 
+    public LocalDateTime getSubmissionDateTime() {
+        return submissionDateTime;
+    }
+
+    public void setSubmissionDateTime(LocalDateTime submissionDateTime) {
+        this.submissionDateTime = submissionDateTime;
+    }
 }

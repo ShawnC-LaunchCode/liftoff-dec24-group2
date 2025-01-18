@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping(value = "contact")
 public class ContactFormController {
@@ -34,6 +38,7 @@ public class ContactFormController {
             return "contact";
         }
 
+        newContactForm.setSubmissionDateTime(LocalDateTime.now());
         contactFormRepository.save(newContactForm);
         return "redirect:/";
 
