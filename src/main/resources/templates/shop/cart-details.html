@@ -25,7 +25,7 @@
             <td th:text = "${cartItems.formatType.name}"></td>
             <td th:text="${cartItems.conditionType.name}"></td>
             <td th:text="${cartItems.price}"></td>
-            <td><button th:onclick="|window.location.href='/remove/' + ${cartIndex.index}|">
+            <td><button th:onclick="|window.location.href='/remove/' + ${cartIndex.index} + '/' + ${cartItems.id} |">
                 Remove Item
             </button></td>
         </tr>

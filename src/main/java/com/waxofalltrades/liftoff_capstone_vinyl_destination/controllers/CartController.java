@@ -25,7 +25,7 @@ public class CartController {
         item.setQtyInStock(item.getQtyInStock() -1);
         itemRepository.save(item);
     }
-    return"redirect:/shop";
+    return"redirect:/album/inventory/{id}";
 }
 
 @GetMapping("/cart")
@@ -34,10 +34,10 @@ public class CartController {
     return "shop/cart-details";
 }
 
-@GetMapping("/remove/{index}")
-    public String removeItem(@PathVariable int index){
-    Item item = ShoppingCart.cart.get(index);
-    ShoppingCart.cart.remove(item);
+@GetMapping("/remove/{index}/{id}")
+    public String removeItem(@PathVariable int index , @PathVariable int id){
+    Item item = itemRepository.findById(id).get();
+    ShoppingCart.cart.remove(index);
     item.setQtyInStock(item.getQtyInStock() + 1);
     itemRepository.save(item);
     return "redirect:/cart";
