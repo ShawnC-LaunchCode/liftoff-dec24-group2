@@ -7,6 +7,19 @@
 
 <a th:href="@{/album/add}">Add New Album</a>
 
+
+<body>
+<div class="container mt-4">
+    <h1>Search for Albums</h1>
+
+    <form>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="term" th:value="${term}" placeholder="Search by name, artist, or genre" aria-label="Search term">
+            <div class="input-group-append">
+                <button th:onclick="|window.location.href='/search/' + ${term} |">Search</button>
+            </div>
+        </div>
+    </form>
 <table class="table table-striped" style="text-align: center">
     <thead class="table-dark">
     <tr>

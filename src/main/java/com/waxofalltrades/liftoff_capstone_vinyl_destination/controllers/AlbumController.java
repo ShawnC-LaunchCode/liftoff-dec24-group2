@@ -1,9 +1,6 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.controllers;
 
-import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Album;
-import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Artist;
-import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Genre;
-import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Item;
+import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.*;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.AlbumRepository;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.ArtistRepository;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.GenreRepository;
@@ -35,6 +32,18 @@ public class AlbumController {
     @RequestMapping("/")
     public String displayAlbums(Model model){
         model.addAttribute("albums", albumRepository.findAll());
+        return "album/list";
+    }
+
+    @GetMapping("/search/{term}")
+    public String displayAlbumsSearch(Model model, @PathVariable String term){
+        Iterable<Album> albums;
+        if (term.isEmpty()){
+            albums = albumRepository.findAll();
+        } else {
+            albums = ItemData.findByTerm(term, albumRepository.findAll());
+        }
+        model.addAttribute("albums", albums);
         return "album/list";
     }
 
