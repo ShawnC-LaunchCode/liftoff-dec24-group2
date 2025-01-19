@@ -1,10 +1,13 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Cascade;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,17 +18,19 @@ public class Album {
     private int id;
 
     @Size(max = 120, message = "Album name must be less than 120 characters")
+    @NotBlank
     private String name;
 
-    private Date releaseDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate releaseDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Image albumImage;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Artist artist;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Genre genre;
 
     @OneToMany(mappedBy = "album")
@@ -47,19 +52,18 @@ public class Album {
         this.name = name;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    /*
     public List<Item> getItems() {
         return items;
     }
-    */
+
     public Image getAlbumImage() {
         return albumImage;
     }
