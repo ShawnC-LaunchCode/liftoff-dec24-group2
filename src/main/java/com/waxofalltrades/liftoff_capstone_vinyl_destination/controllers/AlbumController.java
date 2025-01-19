@@ -15,6 +15,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -36,6 +37,7 @@ public class AlbumController {
         model.addAttribute("albums", albumRepository.findAll());
         return "album/list";
     }
+
 
     // Display Create album form
 
