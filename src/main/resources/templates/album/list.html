@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<h2 class="h2">Album List</h2>
+
+<a th:href="@{/album/add}">Add New Album</a>
+
+<table class="table table-striped" style="text-align: center">
+    <thead class="table-dark">
+    <tr>
+        <th scope="col">Album Name</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Release Date</th>
+        <th scope="col">View Inventory</th>
+        <th scope="col">Edit</th>
+    </tr>
+    </thead>
+    <tr th:each="album : ${albums}">
+        <td th:text="${album.name}"></td>
+        <td th:text="${album.artist.name}"></td>
+        <td th:text="${album.genre.name}"></td>
+        <td th:text="${album.releaseDate}"></td>
+        <td><a th:href="@{/album/inventory/{id}(id=${album.id})}">Detail</a></td>
+        <td><a th:href="@{/album/edit/{id}(id=${album.id})}">Edit</a></td>
+    </tr>
+</table>
+
+</body>
+</html>
