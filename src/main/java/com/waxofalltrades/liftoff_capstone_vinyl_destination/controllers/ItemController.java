@@ -64,6 +64,7 @@ public class ItemController {
                 model.addAttribute("formatTypes", formatTypeRepository.findAll());
                 return "item/add";
             }
+            newItem.setSku(newItem.getSku());
             itemRepository.save(newItem);
         }
 
