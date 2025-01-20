@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "item", uniqueConstraints = { @UniqueConstraint(columnNames = {"album_id", "condition_type_id", "format_type_id"})})
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull

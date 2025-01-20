@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 public class Artist {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Size(max = 120, message = "Artist name must be less than 120 characters")
