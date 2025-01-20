@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 public class ContactForm {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotBlank(message = "Name Required")
