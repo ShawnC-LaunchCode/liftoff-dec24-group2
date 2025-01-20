@@ -33,7 +33,7 @@ public class AlbumController {
     // Display all albums
     @RequestMapping("/")
     public String displayAlbums(Model model){
-        model.addAttribute("albums", albumRepository.findAll());
+        model.addAttribute("albums", albumRepository.findAlbumsWithInventory());
         return "album/list";
     }
 
