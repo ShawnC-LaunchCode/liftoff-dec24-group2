@@ -3,7 +3,6 @@ package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.annotations.Formula;
 
 @Entity
 @Table(name = "item", uniqueConstraints = { @UniqueConstraint(columnNames = {"album_id", "condition_type_id", "format_type_id"})})

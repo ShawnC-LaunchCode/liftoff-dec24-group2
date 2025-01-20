@@ -54,6 +54,7 @@ public class ItemController {
     public String processAddItemForm(@Valid @ModelAttribute("data") Item newItem,
                                      Errors errors, Model model){
 
+
         try {
             if (errors.hasErrors()) {
                 model.addAttribute(new Item());
@@ -75,7 +76,7 @@ public class ItemController {
             return "item/add";
         }
 
-        return "redirect:/item/";
+        return "redirect:/album/inventory/" + newItem.getAlbum().getId();
     }
 
     @GetMapping("edit/{itemId}")
@@ -99,20 +100,25 @@ public class ItemController {
                                       @RequestParam(value = "qtyInStock") int itemQty){
         Optional<Item> result = itemRepository.findById(itemId);
         if (result.isEmpty()) {
-            return "redirect:/item/";
+            return "redirect:/album/";
         } else {
             Item item = result.get();
             item.setPrice(itemPrice);
             item.setQtyInStock(itemQty);
             itemRepository.save(item);
         }
-        return "redirect:/item/";
+        return "redirect:/album/inventory/" + result.get().getAlbum().getId();
     }
 
     @PostMapping("delete/{id}")
     public String processDeleteItem(@PathVariable("id") int itemId) {
-        itemRepository.deleteById(itemId);
-        return "redirect:/item/";
+        Optional<Item> result = itemRepository.findById(itemId);
+        if (result.isEmpty()) {
+            return "redirect:/album/";
+        } else {
+            itemRepository.deleteById(itemId);
+        }
+        return "redirect:/album/inventory/" + result.get().getAlbum().getId();
     }
 
 
