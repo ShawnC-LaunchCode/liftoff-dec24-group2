@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 public class Event {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotBlank(message = "Name is required")
