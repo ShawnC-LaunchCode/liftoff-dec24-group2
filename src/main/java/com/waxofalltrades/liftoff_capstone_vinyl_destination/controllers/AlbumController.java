@@ -28,15 +28,15 @@ public class AlbumController {
     @Autowired
     private GenreRepository genreRepository;
 
-    // Display all albums
+//     Display all albums
     @RequestMapping("/")
     public String displayAlbums(Model model){
         model.addAttribute("albums", albumRepository.findAll());
         return "album/list";
     }
 
-    @GetMapping("/search/{term}")
-    public String displayAlbumsSearch(Model model, @PathVariable String term){
+    @PostMapping("/")
+    public String displayAlbumsSearch(Model model, @RequestParam String term){
         Iterable<Album> albums;
         if (term.isEmpty()){
             albums = albumRepository.findAll();
@@ -44,6 +44,7 @@ public class AlbumController {
             albums = ItemData.findByTerm(term, albumRepository.findAll());
         }
         model.addAttribute("albums", albums);
+        model.addAttribute("term", term);
         return "album/list";
     }
 
