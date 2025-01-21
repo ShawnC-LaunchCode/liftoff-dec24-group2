@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 public class Genre {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Size(max = 120, message = "Genre name must be less than 120 characters")

@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 public class Album {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Size(max = 120, message = "Album name must be less than 120 characters")

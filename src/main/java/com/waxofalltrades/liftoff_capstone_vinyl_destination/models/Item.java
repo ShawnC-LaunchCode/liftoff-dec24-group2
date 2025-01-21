@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "item", uniqueConstraints = { @UniqueConstraint(columnNames = {"album_id", "condition_type_id", "format_type_id"})})
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull
@@ -34,17 +34,19 @@ public class Item {
     @NotNull
     private FormatType formatType;
 
+    private String sku;
+
     public Item() {
     }
 
-    public Item(int id, double price, int qtyInStock, Album album, ConditionType conditionType, FormatType formatType) {
+    public Item(int id, double price, int qtyInStock, Album album, ConditionType conditionType, FormatType formatType, String sku) {
         this.id = id;
         this.price = price;
         this.qtyInStock = qtyInStock;
         this.album = album;
         this.conditionType = conditionType;
         this.formatType = formatType;
-
+        this.sku = sku;
     }
 
     public int getId() {
@@ -95,4 +97,11 @@ public class Item {
         this.qtyInStock = qtyInStock;
     }
 
+    public String getSku() {
+        return String.valueOf(this.album.getId()) + String.valueOf(this.conditionType.getId()) + String.valueOf(this.formatType.getId());
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
 }
