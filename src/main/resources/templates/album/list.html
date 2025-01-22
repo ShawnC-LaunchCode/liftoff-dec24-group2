@@ -34,8 +34,8 @@
     </tr>
     </thead>
     <tr th:each="album : ${albums}">
-        <td th:text="${album.name}"></td>
         <td th:text="${album.artist.name}"></td>
+        <td th:text="${album.name}"></td>
         <td th:text="${album.genre.name}"></td>
         <td th:text="${album.releaseYear}"></td>
         <td><a th:href="@{/album/inventory/{id}(id=${album.id})}">Detail</a></td>
