@@ -101,7 +101,7 @@ public class AlbumController {
                                       @RequestParam(value = "name") String albumName,
                                       @RequestParam(value = "artist.Id") int artistId,
                                        @RequestParam(value = "genre.Id") int genreId,
-                                      @RequestParam(value = "releaseDate") LocalDate releaseDate){
+                                      @RequestParam(value = "releaseYear") int releaseYear){
         Optional<Album> result = albumRepository.findById(albumId);
         Optional<Artist> newArtist = artistRepository.findById(artistId);
         Optional<Genre> newGenre = genreRepository.findById(genreId);
@@ -113,7 +113,7 @@ public class AlbumController {
             album.setName(albumName);
             if(newArtist.isPresent()) {album.setArtist(newArtist.get());}
             if(newGenre.isPresent()){album.setGenre(newGenre.get());}
-            album.setReleaseDate(releaseDate);
+            album.setReleaseYear(releaseYear);
             albumRepository.save(album);
         }
         return "redirect:/album/";

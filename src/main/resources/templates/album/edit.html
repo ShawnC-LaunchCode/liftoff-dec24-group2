@@ -34,9 +34,9 @@
     </div>
     <div class="form-group">
         <label>Release Date
-            <input type="date" th:field="${album.releaseDate}">
+            <input th:field="${album.releaseYear}">
         </label>
-        <p class="text-danger" th:errors="${album.releaseDate}"></p>
+        <p class="text-danger" th:errors="${album.releaseYear}"></p>
     </div>
 
     <input class = "btn btn-primary" type="submit" value="Submit"/>
