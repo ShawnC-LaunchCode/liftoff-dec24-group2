@@ -11,4 +11,6 @@ import java.util.List;
 public interface AlbumRepository extends CrudRepository<Album, Integer> {
     @Query("SELECT al FROM Album al JOIN FETCH al.artist ar ORDER BY ar.name ASC, al.name ASC")
     List<Album> findAllOrderByArtistNameAlbumName();
+
+    List<Album> findAllByOrderByNameAsc();
 }
