@@ -22,7 +22,7 @@
     </tr>
     </thead>
     <tr th:each="album : ${albums}">
-        <td th:text="${album.artist.name}"></td>
+        <td><a th:href="@{/artist/detail/{id}(id=${album.artist.id})}" th:text = "${album.artist.name}"></a></td>
         <td th:text="${album.name}"></td>
         <td th:text="${album.genre.name}"></td>
         <td th:text="${album.releaseYear}"></td>

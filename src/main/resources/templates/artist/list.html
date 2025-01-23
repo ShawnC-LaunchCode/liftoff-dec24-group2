@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<h2 class="h2">Artist List</h2>
+
+<a th:href="@{/artist/add}">Add New Artist</a>
+
+
+<body>
+
+
+<table class="table table-striped" style="text-align: center">
+    <thead class="table-dark">
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Detail</th>
+        <th scope="col">Edit</th>
+    </tr>
+    </thead>
+    <tr th:each="artist : ${artists}">
+        <td th:text = "${artist.name}"></td>
+        <td><a th:href="@{/artist/detail/{id}(id=${artist.id})}">Detail</a></td>
+        <td><a th:href="@{/artist/edit/{id}(id=${artist.id})}">Edit</a></td>
+    </tr>
+</table>
+
+</body>
+</html>

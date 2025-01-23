@@ -54,10 +54,10 @@ public class EventController {
             model.addAttribute("eventTypes", eventTypeRepository.findAll());
             return "event/add";
         }
-
         eventRepository.save(newEvent);
 
         return "redirect:/event/";
+
     }
 
     // Modify Event

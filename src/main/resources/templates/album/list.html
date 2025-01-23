@@ -25,8 +25,8 @@
 <table class="table table-striped" style="text-align: center">
     <thead class="table-dark">
     <tr>
-        <th scope="col">Album Name</th>
         <th scope="col">Artist</th>
+        <th scope="col">Album</th>
         <th scope="col">Genre</th>
         <th scope="col">Release Year</th>
         <th scope="col">View Inventory</th>
@@ -34,7 +34,7 @@
     </tr>
     </thead>
     <tr th:each="album : ${albums}">
-        <td th:text="${album.artist.name}"></td>
+        <td><a th:href="@{/artist/detail/{id}(id=${album.artist.id})}" th:text = "${album.artist.name}"></a></td>
         <td th:text="${album.name}"></td>
         <td th:text="${album.genre.name}"></td>
         <td th:text="${album.releaseYear}"></td>
