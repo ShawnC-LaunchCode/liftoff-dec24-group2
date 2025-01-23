@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace = "~{fragments :: head}"></head>
+<body>
+<header th:replace = "~{fragments :: header}"></header>
+<h1>Contact Submissions</h1>
+
+<table class="table table-striped" style="text-align: center">
+    <thead class="table-dark">
+    <tr>
+        <th scope="col">Submission Created</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email Address</th>
+        <th scope="col">Heading</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tr th:each="contact : ${contacts}">
+        <td th:text="${contact.submissionDateTime}"></td>
+        <td th:text="${contact.name}"></td>
+        <td th:text="${contact.emailAddress}"></td>
+        <td th:text="${contact.heading}"></td>
+        <td><a th:href = "@{/contact/detail/{id}(id=${contact.id})}">Detail</a></td>
+    </tr>
+</table>
+
+
+</body>
+</html>

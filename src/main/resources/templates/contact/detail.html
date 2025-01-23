@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<h2 class="h2" th:text="${heading}"></h2>
+
+<table class="table table-striped w-auto" style="text-align: center" >
+    <tr>
+        <th>Submission Datetime</th>
+        <td th:text="${contact.submissionDateTime}"></td>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td th:text="${contact.name}"></td>
+    </tr>
+    <tr>
+        <th>Email Address</th>
+        <td th:text="${contact.emailAddress}"></td>
+    </tr>
+    <tr>
+        <th>Heading</th>
+        <td th:text="${contact.heading}"></td>
+    </tr>
+    <tr>
+        <th>Message</th>
+        <td th:text="${contact.message}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

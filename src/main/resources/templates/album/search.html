@@ -1,26 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}"></head>
+<!DocTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+</head>
 <body>
-<header th:replace="~{fragments :: header}"></header>
-<h2 class="h2">Album List</h2>
-
-<a th:href="@{/album/add}">Add New Album</a>
+<h1>Search was redirected correctly</h1>
 
 
-<body>
-<div class="container mt-4">
-    <h1>Search for Albums</h1>
-
-    <form th:action="@{/album/}" method="post">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" name="term" th:value="${term}" placeholder="Search by name, artist, or genre" aria-label="Search term">
-            <div class="input-group-append">
-                <button type="submit">Search</button>
-            </div>
-        </div>
-    </form>
-
+<h2 th:text="${term}"></h2>
 
 <table class="table table-striped" style="text-align: center">
     <thead class="table-dark">

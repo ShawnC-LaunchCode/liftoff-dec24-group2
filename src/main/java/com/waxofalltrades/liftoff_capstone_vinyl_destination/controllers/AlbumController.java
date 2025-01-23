@@ -1,9 +1,6 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.controllers;
 
-import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Album;
-import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Artist;
-import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Genre;
-import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Item;
+import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.*;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.AlbumRepository;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.ArtistRepository;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.GenreRepository;
@@ -15,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -30,12 +28,26 @@ public class AlbumController {
     @Autowired
     private GenreRepository genreRepository;
 
-    // Display all albums
+//     Display all albums
     @RequestMapping("/")
     public String displayAlbums(Model model){
         model.addAttribute("albums", albumRepository.findAlbumsWithInventory());
         return "album/list";
     }
+
+    @PostMapping("/")
+    public String displayAlbumsSearch(Model model, @RequestParam String term){
+        Iterable<Album> albums;
+        if (term.isEmpty()){
+            albums = albumRepository.findAll();
+        } else {
+            albums = ItemData.findByTerm(term, albumRepository.findAll());
+        }
+        model.addAttribute("albums", albums);
+        model.addAttribute("term", term);
+        return "album/list";
+    }
+
 
     // Display Create album form
 
