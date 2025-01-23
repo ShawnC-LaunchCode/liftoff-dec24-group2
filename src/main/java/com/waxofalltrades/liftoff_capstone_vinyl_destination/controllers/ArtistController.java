@@ -96,6 +96,6 @@ public class ArtistController {
     @PostMapping("delete/{id}")
     public String processDeleteArtistForm(@PathVariable("id") int artistId){
         artistRepository.deleteById(artistId);
-        return "redirect:/album/";
+        return "redirect:/artist/";
     }
 }
