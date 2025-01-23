@@ -39,9 +39,9 @@ public class AlbumController {
     public String displayAlbumsSearch(Model model, @RequestParam String term){
         Iterable<Album> albums;
         if (term.isEmpty()){
-            albums = albumRepository.findAll();
+            albums = albumRepository.findAllOrderByArtistNameAlbumName();
         } else {
-            albums = ItemData.findByTerm(term, albumRepository.findAll());
+            albums = ItemData.findByTerm(term, albumRepository.findAllOrderByArtistNameAlbumName());
         }
         model.addAttribute("albums", albums);
         model.addAttribute("term", term);
