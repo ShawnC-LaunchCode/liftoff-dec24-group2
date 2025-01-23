@@ -1,6 +1,7 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message="Name is required")
     @Size(max = 120, message = "Genre name must be less than 120 characters")
     private String name;
 

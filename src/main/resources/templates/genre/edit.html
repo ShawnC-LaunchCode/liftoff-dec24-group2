@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace = "~{fragments :: head}"></head>
+<body>
+<header th:replace = "~{fragments :: header}"></header>
+<h2 class = "h2" th:text="${heading}"></h2>
+
+<p th:text="${errorMsg}" style="color:red;"></p>
+
+<form th:action="@{/genre/edit}" method="post">
+    <div class="form-group">
+        <label>Name
+            <input th:field="${genre.name}">
+        </label>
+        <p class="text-danger" th:errors="${genre.name}"></p>
+    </div>
+
+    <input class = "btn btn-primary" type="submit" value="Submit"/>
+    <input type="hidden" th:value="${genre.id}" name="genreId" />
+
+
+</form>
+<form th:action="'/genre/delete/' + ${genre.id}" method="post">
+    <input class = "btn btn-danger" type="submit" value = "Delete" onclick="return confirm('Confirm Delete')"/>
+</form>
+
+</body>
+</html>
