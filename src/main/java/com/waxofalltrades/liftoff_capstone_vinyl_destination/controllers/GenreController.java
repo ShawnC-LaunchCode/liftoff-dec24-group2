@@ -73,6 +73,13 @@ public class GenreController {
         return "redirect:/genre/";
     }
 
+    @PostMapping("delete/{id}")
+    public String processEditGenreForm(@PathVariable("id") int id) {
+        genreRepository.deleteById(id);
+
+        return "redirect:/genre/";
+    }
+
 }
 
 
