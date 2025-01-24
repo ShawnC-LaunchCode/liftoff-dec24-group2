@@ -31,7 +31,7 @@ public class AlbumController {
 //     Display all albums
     @RequestMapping("/")
     public String displayAlbums(Model model){
-        model.addAttribute("albums", albumRepository.findAll());
+        model.addAttribute("albums", albumRepository.findAllOrderByArtistNameAlbumName());
         return "album/list";
     }
 
@@ -39,9 +39,9 @@ public class AlbumController {
     public String displayAlbumsSearch(Model model, @RequestParam String term){
         Iterable<Album> albums;
         if (term.isEmpty()){
-            albums = albumRepository.findAll();
+            albums = albumRepository.findAllOrderByArtistNameAlbumName();
         } else {
-            albums = ItemData.findByTerm(term, albumRepository.findAll());
+            albums = ItemData.findByTerm(term, albumRepository.findAllOrderByArtistNameAlbumName());
         }
         model.addAttribute("albums", albums);
         model.addAttribute("term", term);
@@ -54,8 +54,8 @@ public class AlbumController {
     @GetMapping("add")
     public String displayAddAlbumForm(Model model){
         model.addAttribute(new Album());
-        model.addAttribute("artists", artistRepository.findAll());
-        model.addAttribute("genres", genreRepository.findAll());
+        model.addAttribute("artists", artistRepository.findAllByOrderByNameAsc());
+        model.addAttribute("genres", genreRepository.findAllByOrderByNameAsc());
 
         return "album/add";
     }
@@ -67,8 +67,8 @@ public class AlbumController {
                                       Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("artists", artistRepository.findAll());
-            model.addAttribute("genres", genreRepository.findAll());
+            model.addAttribute("artists", artistRepository.findAllByOrderByNameAsc());
+            model.addAttribute("genres", genreRepository.findAllByOrderByNameAsc());
             return "album/add";
         }
 
@@ -101,19 +101,24 @@ public class AlbumController {
                                       @RequestParam(value = "name") String albumName,
                                       @RequestParam(value = "artist.Id") int artistId,
                                        @RequestParam(value = "genre.Id") int genreId,
-                                      @RequestParam(value = "releaseDate") LocalDate releaseDate){
+                                      @RequestParam(value = "releaseYear") int releaseYear,
+                                       Errors errors){
         Optional<Album> result = albumRepository.findById(albumId);
         Optional<Artist> newArtist = artistRepository.findById(artistId);
         Optional<Genre> newGenre = genreRepository.findById(genreId);
 
-        if (result.isEmpty()) {
+        if (errors.hasErrors()) {
+            return ("album/edit");
+        }
+
+            if (result.isEmpty()) {
             return "redirect:/album/";
         } else {
             Album album = result.get();
             album.setName(albumName);
             if(newArtist.isPresent()) {album.setArtist(newArtist.get());}
             if(newGenre.isPresent()){album.setGenre(newGenre.get());}
-            album.setReleaseDate(releaseDate);
+            album.setReleaseYear(releaseYear);
             albumRepository.save(album);
         }
         return "redirect:/album/";

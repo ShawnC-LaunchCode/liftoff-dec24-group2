@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<h1>Add New Artist</h1>
+
+<p th:text="${errorMsg}" style="color:red;"></p>
+
+<form method="post">
+    <div class="form-group">
+        <label>Name
+            <input th:field="${artist.name}">
+        </label>
+        <p class="text-danger" th:errors="${artist.name}"></p>
+    </div>
+
+    <input class = "btn btn-primary" type="submit" value="Submit"/>
+</form>
+
+</body>
+</html>
