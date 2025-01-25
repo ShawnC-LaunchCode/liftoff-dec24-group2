@@ -1,36 +1,55 @@
-<!DocTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
 <body>
-<h1>Cart Details</h1>
+<header th:replace="~{fragments :: header}"></header>
+<h2 class="h2">Shopping Cart</h2>
+<tr>
+    <th>Here are the items you've selected for purchase.</th>
+</tr>
+<table class="table table-striped" style="text-align: center">
+    <thead class="table-dark">
+    <tr>
+        <th scope="col">Album Name</th>
+        <th scope="col">Format</th>
+        <th scope="col">Condition</th>
+        <th scope="col" >Price</th>
+        <th scope="col" >Remove Item</th>
 
-<div class="container">
-    <table>
-        <thead>
-        <tr>
-            <th>Here are the items you've selected for purchase.</th>
-        </tr>
-        </thead>
-        <tr>
-            <th>Album Name</th>
-            <th>Format</th>
-            <th>Condition</th>
-            <th>Price</th>
-        </tr>
-        <tr th:each="cartItems, cartIndex : ${cart}">
-            <td th:text="${cartItems.album.name}"></td>
-            <td th:text = "${cartItems.formatType.name}"></td>
-            <td th:text="${cartItems.conditionType.name}"></td>
-            <td th:text="${cartItems.price}"></td>
-            <td><button th:onclick="|window.location.href='/remove/' + ${cartIndex.index} + '/' + ${cartItems.id} |">
-                Remove Item
-            </button></td>
-        </tr>
-    </table>
+    </tr>
+    </thead>
+    <tr th:each="cartItems, cartIndex : ${cart}">
+        <td th:text="${cartItems.album.name}"></td>
+        <td th:text = "${cartItems.formatType.name}"></td>
+        <td th:text="${cartItems.conditionType.name}"></td>
+        <td th:text="${cartItems.price}"></td>
+        <td><button th:onclick="|window.location.href='/remove/' + ${cartIndex.index} + '/' + ${cartItems.id} |">
+            Remove Item
+        </button></td>
+    </tr>
+</table>
 
-</div>
+<table class="table table-striped" style="text-align: center">
+    <thead class="table-dark">
+    <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col" >Total</th>
+        <th scope="col" >Checkout</th>
+
+    </tr>
+    </thead>
+    <tr>
+        <td th:text></td>
+        <td th:text></td>
+        <td th:text></td>
+        <td>Total Test</td>
+        <td><button th:onclick="|window.location.href='/cart/checkout'|">
+        Checkout
+    </button></td>
+    </tr>
+</table>
+
 </body>
 </html>

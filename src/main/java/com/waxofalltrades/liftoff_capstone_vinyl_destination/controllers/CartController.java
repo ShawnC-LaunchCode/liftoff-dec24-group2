@@ -49,4 +49,9 @@ public class CartController {
     return "/shop/paid";
 }
 
+    @GetMapping("/cart/checkout")
+    public String checkout(){
+        return"redirect:/checkout";
+    }
+
 }
