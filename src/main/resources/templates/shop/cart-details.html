@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}"></head>
+<head th:replace="~{fragments :: head}">
+</head>
 <body>
+
 <header th:replace="~{fragments :: header}"></header>
+<div th:replace="~{fragments :: cartcount}"></div>
 <h2 class="h2">Shopping Cart</h2>
 <tr>
     <th>Here are the items you've selected for purchase.</th>
