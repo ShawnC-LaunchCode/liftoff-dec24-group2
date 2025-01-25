@@ -41,7 +41,7 @@ public class EventController {
     @GetMapping("add")
     public String displayAddEventForm(Model model) {
         model.addAttribute(new Event());
-        model.addAttribute("eventTypes", eventTypeRepository.findAll());
+        model.addAttribute("eventTypes", eventTypeRepository.findAllByOrderByNameAsc());
         return "event/add";
     }
 
@@ -51,7 +51,7 @@ public class EventController {
 
         if (errors.hasErrors()) {
             model.addAttribute("heading", "Create Event");
-            model.addAttribute("eventTypes", eventTypeRepository.findAll());
+            model.addAttribute("eventTypes", eventTypeRepository.findAllByOrderByNameAsc());
             return "event/add";
         }
         eventRepository.save(newEvent);
@@ -71,7 +71,7 @@ public class EventController {
             Event event = currentEvent.get();
             model.addAttribute("heading", "Modify Event Name: " + event.getName() + " (ID: " + event.getId() + ")");
             model.addAttribute("event", event);
-            model.addAttribute("eventTypes", eventTypeRepository.findAll());
+            model.addAttribute("eventTypes", eventTypeRepository.findAllByOrderByNameAsc());
         }
 
         return "event/edit";
