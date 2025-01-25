@@ -43,7 +43,7 @@ public class ItemController {
     @GetMapping("add")
     public String displayAddItemForm(Model model){
         model.addAttribute(new Item());
-        model.addAttribute("albums", albumRepository.findAll());
+        model.addAttribute("albums", albumRepository.findAllByOrderByNameAsc());
         model.addAttribute("conditionTypes", conditionTypeRepository.findAll());
         model.addAttribute("formatTypes", formatTypeRepository.findAll());
 
@@ -59,7 +59,7 @@ public class ItemController {
             if (errors.hasErrors()) {
                 model.addAttribute(new Item());
                 model.addAttribute("errorMsg", "Error: Ensure Selection Made for All Fields and Price is Greater than 0");
-                model.addAttribute("albums", albumRepository.findAll());
+                model.addAttribute("albums", albumRepository.findAllByOrderByNameAsc());
                 model.addAttribute("conditionTypes", conditionTypeRepository.findAll());
                 model.addAttribute("formatTypes", formatTypeRepository.findAll());
                 return "item/add";
@@ -71,7 +71,7 @@ public class ItemController {
         catch (DataIntegrityViolationException e){
             model.addAttribute("errorMsg", "Item already in inventory");
             model.addAttribute(new Item());
-            model.addAttribute("albums", albumRepository.findAll());
+            model.addAttribute("albums", albumRepository.findAllByOrderByNameAsc());
             model.addAttribute("conditionTypes", conditionTypeRepository.findAll());
             model.addAttribute("formatTypes", formatTypeRepository.findAll());
             return "item/add";
