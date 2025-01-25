@@ -31,6 +31,7 @@ public class CartController {
 @GetMapping("/cart")
     public String getCart(Model model){
     model.addAttribute("cart", ShoppingCart.cart);
+    model.addAttribute("cartCount",ShoppingCart.cart.size());
     return "shop/cart-details";
 }
 

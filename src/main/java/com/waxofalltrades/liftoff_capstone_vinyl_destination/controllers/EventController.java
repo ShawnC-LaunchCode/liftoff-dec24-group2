@@ -3,6 +3,7 @@ package com.waxofalltrades.liftoff_capstone_vinyl_destination.controllers;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Event;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.EventType;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.Item;
+import com.waxofalltrades.liftoff_capstone_vinyl_destination.models.ShoppingCart;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.EventRepository;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.EventTypeRepository;
 import com.waxofalltrades.liftoff_capstone_vinyl_destination.repositories.ItemRepository;
@@ -33,6 +34,7 @@ public class EventController {
     @RequestMapping("/")
     public String displayAllEvents(Model model) {
         model.addAttribute("events", eventRepository.findAllByOrderByEventDateAsc());
+        model.addAttribute("cartCount", ShoppingCart.cart.size());
         return "event/list";
     }
 
@@ -42,6 +44,7 @@ public class EventController {
     public String displayAddEventForm(Model model) {
         model.addAttribute(new Event());
         model.addAttribute("eventTypes", eventTypeRepository.findAll());
+        model.addAttribute("cartCount",ShoppingCart.cart.size());
         return "event/add";
     }
 
