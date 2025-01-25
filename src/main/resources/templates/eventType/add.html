@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<h1>Add New Event Type</h1>
+
+<p th:text="${errorMsg}" style="color:red;"></p>
+
+<form method="post">
+    <div class="form-group">
+        <label>Name
+            <input th:field="${eventType.name}">
+        </label>
+        <p class="text-danger" th:errors="${eventType.name}"></p>
+    </div>
+
+    <input class = "btn btn-primary" type="submit" value="Submit"/>
+</form>
+
+</body>
+</html>

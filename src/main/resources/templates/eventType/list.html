@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+
+<h2 class="h2">Event Type List</h2>
+
+<a th:href="@{/EventType/add}">Add New Event Type</a>
+
+
+<table class="table table-striped" style="text-align: center">
+    <thead class="table-dark">
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Edit</th>
+    </tr>
+    </thead>
+    <tr th:each="eventType : ${eventTypes}">
+        <td th:text="${eventType.name}"></td>
+        <td><a th:href="@{/EventType/edit/{id}(id=${eventType.id})}">Edit</a></td>
+    </tr>
+</table>
+
+</body>
+</html>
