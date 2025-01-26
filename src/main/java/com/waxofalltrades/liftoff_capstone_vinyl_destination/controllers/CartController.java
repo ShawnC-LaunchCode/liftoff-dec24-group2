@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class CartController {
@@ -32,6 +34,12 @@ public class CartController {
     public String getCart(Model model){
     model.addAttribute("cart", ShoppingCart.cart);
     model.addAttribute("cartCount",ShoppingCart.cart.size());
+    double priceTotal = 0;
+    for (int i = 0; i < ShoppingCart.cart.size(); i++) {
+        priceTotal += ShoppingCart.cart.get(i).getPrice();
+
+    }
+    model.addAttribute("total", priceTotal);
     return "shop/cart-details";
 }
 
@@ -54,5 +62,13 @@ public class CartController {
     public String checkout(){
         return"redirect:/checkout";
     }
+
+    public String totalPrice(Model model) {
+
+
+
+            return "redirect:car";
+        }
+
 
 }
