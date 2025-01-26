@@ -57,18 +57,14 @@ public class CartController {
     ShoppingCart.cart.clear();
     return "/shop/paid";
 }
+    @GetMapping("/shop/cancel")
+    public String checkoutCancel(){
+        return "/shop/cancel";
+    }
 
     @GetMapping("/cart/checkout")
     public String checkout(){
         return"redirect:/checkout";
     }
-
-    public String totalPrice(Model model) {
-
-
-
-            return "redirect:car";
-        }
-
 
 }
