@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -20,14 +21,17 @@ public class CartController {
     private ItemRepository itemRepository;
 
 @GetMapping("/cart/{id}")
-    public String addToCart(@PathVariable int id){
+    public String addToCart(@PathVariable int id, RedirectAttributes redirectAttributes){
     Item item = itemRepository.findById(id).get();
+    int albumId = item.getAlbum().getId();
     if (item.getQtyInStock() > 0) {
         ShoppingCart.cart.add(item);
         item.setQtyInStock(item.getQtyInStock() -1);
         itemRepository.save(item);
     }
-    return"redirect:/album/inventory/{id}";
+
+    redirectAttributes.addAttribute("albumId", albumId);
+    return"redirect:/album/inventory/{albumId}";
 }
 
 @GetMapping("/cart")
@@ -64,7 +68,11 @@ public class CartController {
 
     @GetMapping("/cart/checkout")
     public String checkout(){
+    if (!ShoppingCart.cart.isEmpty()){
         return"redirect:/checkout";
+    }else{
+    return"redirect:/cart";
+    }
     }
 
 }
