@@ -1,6 +1,7 @@
 package com.waxofalltrades.liftoff_capstone_vinyl_destination.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.Formula;
 
@@ -11,8 +12,12 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotNull
+    @Min(value = 0, message = "Value must be greater than 0")
     private double price;
 
+    @NotNull
+    @Min(0)
     private int qtyInStock = 1;
 
     @ManyToOne

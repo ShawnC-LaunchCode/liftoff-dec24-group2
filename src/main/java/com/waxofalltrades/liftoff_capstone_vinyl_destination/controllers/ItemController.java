@@ -51,50 +51,42 @@ public class ItemController {
     }
 
     @PostMapping("add")
-    public String processAddItemForm(@ModelAttribute @Valid Item newItem,
-                                     Errors errors){
+    public String processAddItemForm(@Valid @ModelAttribute("data") Item newItem,
+                                     Errors errors, Model model){
 
         try {
             if (errors.hasErrors()) {
+                model.addAttribute(new Item());
+                model.addAttribute("errorMsg", "Error: Ensure Selection Made for All Fields and Price is Greater than 0");
+                model.addAttribute("albums", albumRepository.findAll());
+                model.addAttribute("conditionTypes", conditionTypeRepository.findAll());
+                model.addAttribute("formatTypes", formatTypeRepository.findAll());
                 return "item/add";
             }
-
-        /*
-        // If item with same albumId, conditionType, formatType exists in itemRepository:
-            // Increment item.qtyInStock by 1
-        Album albumLookup = newItem.getAlbum();
-        ConditionType conditionTypeLookup = newItem.getConditionType();
-        FormatType formatTypeLookup = newItem.getFormatType();
-        Item existingItem = itemRepository.findByAlbumConditionFormat(albumLookup, conditionTypeLookup, formatTypeLookup);
-        if(existingItem != null){
-            // if existing item in database, inform user item exists
-            // redirect to item detail page?
-            existingItem.setQtyInStock(existingItem.getQtyInStock() + 1);
-        }
-        else{
-            // save new item
-            itemRepository.save(newItem);
-        }
-       */
             itemRepository.save(newItem);
         }
 
         catch (DataIntegrityViolationException e){
-            return "redirect:/item/";
+            model.addAttribute("errorMsg", "Item already in inventory");
+            model.addAttribute(new Item());
+            model.addAttribute("albums", albumRepository.findAll());
+            model.addAttribute("conditionTypes", conditionTypeRepository.findAll());
+            model.addAttribute("formatTypes", formatTypeRepository.findAll());
+            return "item/add";
         }
 
         return "redirect:/item/";
     }
 
-    @GetMapping("edit")
-    public String displayEditItemForm(@RequestParam Integer itemId, Model model){
+    @GetMapping("edit/{itemId}")
+    public String displayEditItemForm(@PathVariable int itemId, Model model){
         Optional<Item> result = itemRepository.findById(itemId);
 
         if (result.isEmpty()) {
-            model.addAttribute("heading", "Invalid Event ID: " + itemId);
+            model.addAttribute("heading", "Invalid Item ID: " + itemId);
         } else {
             Item item = result.get();
-            model.addAttribute("heading", "Modify Item: " + itemId);
+            model.addAttribute("heading", "Modify Item: " + item.getAlbum().getName() + " (ID: " + item.getId() + ")");
             model.addAttribute("item", item);
         }
 
@@ -107,13 +99,19 @@ public class ItemController {
                                       @RequestParam(value = "qtyInStock") int itemQty){
         Optional<Item> result = itemRepository.findById(itemId);
         if (result.isEmpty()) {
-            return "item/edit";
+            return "redirect:/item/";
         } else {
             Item item = result.get();
             item.setPrice(itemPrice);
             item.setQtyInStock(itemQty);
             itemRepository.save(item);
         }
+        return "redirect:/item/";
+    }
+
+    @PostMapping("delete/{id}")
+    public String processDeleteItem(@PathVariable("id") int itemId) {
+        itemRepository.deleteById(itemId);
         return "redirect:/item/";
     }
 
