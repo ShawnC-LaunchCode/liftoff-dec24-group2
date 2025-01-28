@@ -90,8 +90,8 @@ public class AlbumController {
             Album album = result.get();
             model.addAttribute("heading", "Modify Album: " + album.getName() + " (ID: " + album.getId() + ")");
             model.addAttribute("album", album);
-            model.addAttribute("artists", artistRepository.findAll());
-            model.addAttribute("genres", genreRepository.findAll());
+            model.addAttribute("artists", artistRepository.findAllByOrderByNameAsc());
+            model.addAttribute("genres", genreRepository.findAllByOrderByNameAsc());
         }
 
         return "album/edit";
@@ -104,17 +104,12 @@ public class AlbumController {
                                       @RequestParam(value = "name") String albumName,
                                       @RequestParam(value = "artist.Id") int artistId,
                                        @RequestParam(value = "genre.Id") int genreId,
-                                      @RequestParam(value = "releaseYear") int releaseYear,
-                                       Errors errors){
+                                      @RequestParam(value = "releaseYear") int releaseYear){
         Optional<Album> result = albumRepository.findById(albumId);
         Optional<Artist> newArtist = artistRepository.findById(artistId);
         Optional<Genre> newGenre = genreRepository.findById(genreId);
 
-        if (errors.hasErrors()) {
-            return ("album/edit");
-        }
-
-            if (result.isEmpty()) {
+        if (result.isEmpty()) {
             return "redirect:/album/";
         } else {
             Album album = result.get();
