@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace = "~{fragments :: head}"></head>
 <body>
 <header th:replace = "~{fragments :: header}"></header>
@@ -20,7 +20,7 @@
         <td th:text="${contact.name}"></td>
         <td th:text="${contact.emailAddress}"></td>
         <td th:text="${contact.heading}"></td>
-        <td><a th:href = "@{/contact/detail/{id}(id=${contact.id})}">Detail</a></td>
+        <td><a sec:authorize="hasAuthority('ADMIN')" th:href = "@{/contact/detail/{id}(id=${contact.id})}">Detail</a></td>
     </tr>
 </table>
 

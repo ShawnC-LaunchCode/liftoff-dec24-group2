@@ -1,5 +1,5 @@
 <!DocTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Success</title>
@@ -27,7 +27,7 @@
         <td th:text="${album.genre.name}"></td>
         <td th:text="${album.releaseYear}"></td>
         <td><a th:href="@{/album/inventory/{id}(id=${album.id})}">Detail</a></td>
-        <td><a th:href="@{/album/edit/{id}(id=${album.id})}">Edit</a></td>
+        <td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/album/edit/{id}(id=${album.id})}">Edit</a></td>
     </tr>
 </table>
 
