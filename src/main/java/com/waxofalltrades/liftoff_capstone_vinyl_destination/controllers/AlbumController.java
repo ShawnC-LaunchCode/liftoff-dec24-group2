@@ -32,6 +32,7 @@ public class AlbumController {
     @RequestMapping("/")
     public String displayAlbums(Model model){
         model.addAttribute("albums", albumRepository.findAllOrderByArtistNameAlbumName());
+        model.addAttribute("cartCount",ShoppingCart.cart.size());
         return "album/list";
     }
 
@@ -45,6 +46,7 @@ public class AlbumController {
         }
         model.addAttribute("albums", albums);
         model.addAttribute("term", term);
+        model.addAttribute("cartCount",ShoppingCart.cart.size());
         return "album/list";
     }
 
@@ -56,6 +58,7 @@ public class AlbumController {
         model.addAttribute(new Album());
         model.addAttribute("artists", artistRepository.findAllByOrderByNameAsc());
         model.addAttribute("genres", genreRepository.findAllByOrderByNameAsc());
+        model.addAttribute("cartCount",ShoppingCart.cart.size());
 
         return "album/add";
     }
@@ -140,7 +143,7 @@ public class AlbumController {
             model.addAttribute("album", album);
             model.addAttribute("items", album.getItems());
         }
-
+        model.addAttribute("cartCount",ShoppingCart.cart.size());
         return "album/inventory";
     }
 }
