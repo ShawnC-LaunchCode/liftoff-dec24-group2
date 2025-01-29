@@ -18,7 +18,7 @@
         <th scope="col">Genre</th>
         <th scope="col">Release Year</th>
         <th scope="col">View Inventory</th>
-        <th scope="col">Edit</th>
+        <th sec:authorize="hasAuthority('ADMIN')"  scope="col">Edit</th>
     </tr>
     </thead>
     <tr th:each="album : ${albums}">

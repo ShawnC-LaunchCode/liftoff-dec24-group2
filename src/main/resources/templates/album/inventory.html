@@ -45,7 +45,7 @@
         <td><button th:onclick="|window.location.href='/cart/' + ${item.id}|">
             Add to Cart
         </button></td>
-        <td><a th:href="@{/item/edit/{id}(id=${item.id})}">Edit</a></td>
+        <td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/item/edit/{id}(id=${item.id})}">Edit</a></td>
     </tr>
 </table>
 
