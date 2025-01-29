@@ -38,7 +38,7 @@ public class ContactFormController {
 
         newContactForm.setSubmissionDateTime(LocalDateTime.now());
         contactFormRepository.save(newContactForm);
-        return "redirect:/";
+        return "contact/success";
 
     }
 
