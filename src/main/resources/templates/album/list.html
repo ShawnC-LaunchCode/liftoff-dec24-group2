@@ -40,7 +40,7 @@
         <td th:text="${album.name}"></td>
         <td th:text="${album.genre.name}"></td>
         <td th:text="${album.releaseYear}"></td>
-        <td><a th:href="@{/album/inventory/{id}(id=${album.id})}">Detail</a></td>
+        <td><a th:href="@{/album/inventory/{id}(id=${album.id})}">Shop</a></td>
         <td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/album/edit/{id}(id=${album.id})}">Edit</a></td>
     </tr>
 </table>
