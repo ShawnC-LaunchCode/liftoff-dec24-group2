@@ -1,10 +1,12 @@
 <!DocTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="~{fragments :: head}">
     <meta charset="UTF-8">
     <title>Success</title>
 </head>
 <body>
+<header th:replace="~{fragments :: header}"></header>
+<div th:replace="~{fragments :: cartcount}"></div>
 <h1>Payment Success</h1>
 
 

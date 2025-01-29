@@ -3,6 +3,7 @@
 <head th:replace="~{fragments :: head}"></head>
 <body>
 <header th:replace="~{fragments :: header}"></header>
+<div th:replace="~{fragments :: cartcount}"></div>
 <h2 class="h2">Album List</h2>
 
 <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/album/add}">Add New Album</a>
