@@ -38,7 +38,7 @@ public class ContactFormController {
 
         newContactForm.setSubmissionDateTime(LocalDateTime.now());
         contactFormRepository.save(newContactForm);
-        return "contact/success";
+        return "redirect:/contact/success";
 
     }
 
@@ -66,4 +66,9 @@ public class ContactFormController {
         return "contact/detail";
     }
 
+    @GetMapping("success")
+    public String displayContactFormSuccessful(){
+
+        return "contact/success";
+    }
 }
