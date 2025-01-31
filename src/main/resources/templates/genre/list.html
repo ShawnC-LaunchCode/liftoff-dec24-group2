@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{fragments :: head}"></head>
 <body>
 <header th:replace="~{fragments :: header}"></header>
 
 <h2 class="h2">Genre List</h2>
 
-<a th:href="@{/genre/add}">Add New Genre</a>
+<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/genre/add}">Add New Genre</a>
 
 
 <table class="table table-striped" style="text-align: center">
     <thead class="table-dark">
     <tr>
         <th scope="col">Name</th>
-        <th scope="col">Edit</th>
+        <th sec:authorize="hasAuthority('ADMIN')"  scope="col">Edit</th>
     </tr>
     </thead>
     <tr th:each="genre : ${genres}">
         <td th:text="${genre.name}"></td>
-        <td><a th:href="@{/genre/edit/{id}(id=${genre.id})}">Edit</a></td>
+        <td><a sec:authorize="hasAuthority('ADMIN')"  th:href="@{/genre/edit/{id}(id=${genre.id})}">Edit</a></td>
     </tr>
 </table>
 

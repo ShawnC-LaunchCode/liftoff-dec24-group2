@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,7 +11,7 @@
 <header th:replace="~{fragments :: header}"></header>
 <h2 class="h2" th:text="${heading}"></h2>
 
-<a th:href="@{/artist/edit/{id}(id=${artist.id})}">Modify Artist</a>
+<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/artist/edit/{id}(id=${artist.id})}">Modify Artist</a>
 
 <table class="table table-striped w-auto" style="text-align: center" >
     <tr>

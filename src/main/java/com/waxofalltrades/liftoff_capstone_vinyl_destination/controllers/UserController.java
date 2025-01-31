@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -34,12 +35,13 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String saveUser(@ModelAttribute("user") UserDto userDto, Model model) {
+    public String saveUser(@ModelAttribute("user") UserDto userDto, RedirectAttributes redirectAttributes) {
         userService.save(userDto);
-        model.addAttribute("message", "Registered successfully");
+        redirectAttributes.addFlashAttribute("message", "Registered successfully");
 
-    return "register";
+        return "redirect:/login";
     }
+
 
     @GetMapping("/login")
     public String login (){
