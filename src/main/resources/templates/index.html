@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8">
-  <title>Home Page</title>
-</head>
+<head th:replace = "~{fragments :: head}"></head>
 <body>
-<h1>Home Page</h1>
+<header th:replace="~{fragments :: header}"></header>
 
-<h2 th:if="${user != null}">
-  Welcome, <span th:text="${user.firstName}">User</span>!
-</h2>
-<h2 th:if="${user == null}">
-  Welcome to Vinyl Destination!
-</h2>
+<p>Use the following steps to interact with the site:</p>
+<ul>
+  <li>First, sign into your account by clicking <a th:href="@{login}">here</a></li>
+  <li>Purchase an album in the <a th:href="@{album/}">Albums</a> screen</li>
+  <li>Visit the <a th:href="@{event/}">Events</a> page to view upcoming events in the store</li>
+  <li>Get in touch with the store with the <a th:href = "@{contact/}">Contact Form</a></li>
+</ul>
 
 </body>
 </html>
