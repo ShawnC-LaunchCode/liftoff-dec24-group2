@@ -34,8 +34,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin-page").hasAuthority("ADMIN")
                         .requestMatchers("/user-page").hasAuthority("USER")
-                        .requestMatchers("/", "/album/", "/item/**", "/event/**","/registration", "/css/**", "/js/**", "/images/**").permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers("/", "/album/", "/contact/**", "/item/**", "/event/**","/registration", "/css/**", "/js/**", "/images/**").permitAll()
+                        .anyRequest().authenticated()
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")

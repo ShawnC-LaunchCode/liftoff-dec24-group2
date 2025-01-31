@@ -22,7 +22,7 @@ public class CustomSucessHandler implements AuthenticationSuccessHandler {
         var roles = authorities.stream().map(r -> r.getAuthority()).findFirst();
 
         if (roles.orElse("").equals("ADMIN")){
-            response.sendRedirect("/admin-page");
+            response.sendRedirect("/album/");
         } else if (roles.orElse("").equals("USER")){
             response.sendRedirect("/album/");
 
