@@ -59,6 +59,7 @@ public class SecurityConfig {
         auth.userDetailsService(customUserDetailService)
                 .passwordEncoder(passwordEncoder());
     }
+
 }
 
 
