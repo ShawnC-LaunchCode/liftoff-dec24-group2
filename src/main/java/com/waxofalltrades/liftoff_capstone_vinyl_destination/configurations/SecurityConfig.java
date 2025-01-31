@@ -35,7 +35,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin-page").hasAuthority("ADMIN")
                         .requestMatchers("/user-page").hasAuthority("USER")
                         .requestMatchers("/", "/album/", "/contact/**", "/item/**", "/event/**","/registration", "/css/**", "/js/**", "/images/**").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
@@ -59,6 +59,7 @@ public class SecurityConfig {
         auth.userDetailsService(customUserDetailService)
                 .passwordEncoder(passwordEncoder());
     }
+
 }
 
 
