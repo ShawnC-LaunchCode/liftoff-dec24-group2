@@ -62,8 +62,9 @@ public class CartController {
     return "/shop/paid";
 }
     @GetMapping("/shop/cancel")
-    public String checkoutCancel(){
-        return "/shop/cancel";
+    public String checkoutCancel(Model model){
+        model.addAttribute("cart", ShoppingCart.cart);
+        return "/shop/cart-details";
     }
 
     @GetMapping("/cart/checkout")
